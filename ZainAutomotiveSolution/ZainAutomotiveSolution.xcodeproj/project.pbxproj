@@ -12,6 +12,22 @@
 		0114B280227C808800D97DC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0114B27E227C808800D97DC2 /* Main.storyboard */; };
 		0114B282227C808B00D97DC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0114B281227C808B00D97DC2 /* Assets.xcassets */; };
 		0114B285227C808B00D97DC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0114B283227C808B00D97DC2 /* LaunchScreen.storyboard */; };
+		0114B28D227C86D500D97DC2 /* ViewCarsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0114B28C227C86D500D97DC2 /* ViewCarsTableViewController.swift */; };
+		0114B28F227D0F9400D97DC2 /* CarsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0114B28E227D0F9400D97DC2 /* CarsTableViewCell.swift */; };
+		0114B291227D285D00D97DC2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0114B290227D285D00D97DC2 /* GoogleService-Info.plist */; };
+		0114B294227D7ED900D97DC2 /* DatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0114B293227D7ED900D97DC2 /* DatabaseProtocol.swift */; };
+		0114B296227D7F1500D97DC2 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0114B295227D7F1500D97DC2 /* Car.swift */; };
+		0114B298227D808400D97DC2 /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0114B297227D808400D97DC2 /* FirebaseController.swift */; };
+		0114B29A227D842C00D97DC2 /* MulticastDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0114B299227D842C00D97DC2 /* MulticastDelegate.swift */; };
+		0114B29E227EE8B000D97DC2 /* AddCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0114B29D227EE8B000D97DC2 /* AddCarViewController.swift */; };
+		0114B2A02282E91100D97DC2 /* WorkshopMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0114B29F2282E91100D97DC2 /* WorkshopMapViewController.swift */; };
+		0114B2A42283810900D97DC2 /* ViewWorkshopsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0114B2A32283810900D97DC2 /* ViewWorkshopsTableViewController.swift */; };
+		0114B2A82283CFD700D97DC2 /* Workshop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0114B2A72283CFD700D97DC2 /* Workshop.swift */; };
+		0114B2AD22840AE100D97DC2 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0114B2AC22840AE100D97DC2 /* ChatViewController.swift */; };
+		0114B2AF22840DAF00D97DC2 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0114B2AE22840DAF00D97DC2 /* Message.swift */; };
+		0114B2B2228426B600D97DC2 /* ViewAppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0114B2B1228426B600D97DC2 /* ViewAppointmentViewController.swift */; };
+		0114B2B62285B21500D97DC2 /* WorkShopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0114B2B52285B21500D97DC2 /* WorkShopTableViewCell.swift */; };
+		C0FEB1DF6122B1984405B683 /* Pods_ZainAutomotiveSolution.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80512CB0CA349F16404452BF /* Pods_ZainAutomotiveSolution.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +38,24 @@
 		0114B281227C808B00D97DC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0114B284227C808B00D97DC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0114B286227C808B00D97DC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0114B28C227C86D500D97DC2 /* ViewCarsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCarsTableViewController.swift; sourceTree = "<group>"; };
+		0114B28E227D0F9400D97DC2 /* CarsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsTableViewCell.swift; sourceTree = "<group>"; };
+		0114B290227D285D00D97DC2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0114B293227D7ED900D97DC2 /* DatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseProtocol.swift; sourceTree = "<group>"; };
+		0114B295227D7F1500D97DC2 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		0114B297227D808400D97DC2 /* FirebaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
+		0114B299227D842C00D97DC2 /* MulticastDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MulticastDelegate.swift; sourceTree = "<group>"; };
+		0114B29D227EE8B000D97DC2 /* AddCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarViewController.swift; sourceTree = "<group>"; };
+		0114B29F2282E91100D97DC2 /* WorkshopMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WorkshopMapViewController.swift; path = "../New Group/WorkshopMapViewController.swift"; sourceTree = "<group>"; };
+		0114B2A32283810900D97DC2 /* ViewWorkshopsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewWorkshopsTableViewController.swift; sourceTree = "<group>"; };
+		0114B2A72283CFD700D97DC2 /* Workshop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workshop.swift; sourceTree = "<group>"; };
+		0114B2AC22840AE100D97DC2 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		0114B2AE22840DAF00D97DC2 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		0114B2B1228426B600D97DC2 /* ViewAppointmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAppointmentViewController.swift; sourceTree = "<group>"; };
+		0114B2B52285B21500D97DC2 /* WorkShopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkShopTableViewCell.swift; sourceTree = "<group>"; };
+		18EFDCF43110B549F73CC951 /* Pods-ZainAutomotiveSolution.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZainAutomotiveSolution.release.xcconfig"; path = "Target Support Files/Pods-ZainAutomotiveSolution/Pods-ZainAutomotiveSolution.release.xcconfig"; sourceTree = "<group>"; };
+		80512CB0CA349F16404452BF /* Pods_ZainAutomotiveSolution.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZainAutomotiveSolution.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC083CBA0A1841CE40E00E62 /* Pods-ZainAutomotiveSolution.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZainAutomotiveSolution.debug.xcconfig"; path = "Target Support Files/Pods-ZainAutomotiveSolution/Pods-ZainAutomotiveSolution.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0FEB1DF6122B1984405B683 /* Pods_ZainAutomotiveSolution.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +75,8 @@
 			children = (
 				0114B279227C808800D97DC2 /* ZainAutomotiveSolution */,
 				0114B278227C808800D97DC2 /* Products */,
+				6FAC9937621BD6C1817F8DD5 /* Pods */,
+				B0970F7AED056B8E4929088E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,6 +91,12 @@
 		0114B279227C808800D97DC2 /* ZainAutomotiveSolution */ = {
 			isa = PBXGroup;
 			children = (
+				0114B2B022841CB200D97DC2 /* Appointment */,
+				0114B2AB22840AC600D97DC2 /* Chat */,
+				0114B2AA22840A3A00D97DC2 /* Workshop */,
+				0114B2A922840A2300D97DC2 /* Cars */,
+				0114B292227D7E7000D97DC2 /* Database */,
+				0114B290227D285D00D97DC2 /* GoogleService-Info.plist */,
 				0114B27A227C808800D97DC2 /* AppDelegate.swift */,
 				0114B27C227C808800D97DC2 /* ViewController.swift */,
 				0114B27E227C808800D97DC2 /* Main.storyboard */,
@@ -64,6 +107,72 @@
 			path = ZainAutomotiveSolution;
 			sourceTree = "<group>";
 		};
+		0114B292227D7E7000D97DC2 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				0114B293227D7ED900D97DC2 /* DatabaseProtocol.swift */,
+				0114B295227D7F1500D97DC2 /* Car.swift */,
+				0114B297227D808400D97DC2 /* FirebaseController.swift */,
+				0114B299227D842C00D97DC2 /* MulticastDelegate.swift */,
+				0114B2A72283CFD700D97DC2 /* Workshop.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		0114B2A922840A2300D97DC2 /* Cars */ = {
+			isa = PBXGroup;
+			children = (
+				0114B28E227D0F9400D97DC2 /* CarsTableViewCell.swift */,
+				0114B29D227EE8B000D97DC2 /* AddCarViewController.swift */,
+				0114B28C227C86D500D97DC2 /* ViewCarsTableViewController.swift */,
+			);
+			path = Cars;
+			sourceTree = "<group>";
+		};
+		0114B2AA22840A3A00D97DC2 /* Workshop */ = {
+			isa = PBXGroup;
+			children = (
+				0114B2A32283810900D97DC2 /* ViewWorkshopsTableViewController.swift */,
+				0114B29F2282E91100D97DC2 /* WorkshopMapViewController.swift */,
+				0114B2B52285B21500D97DC2 /* WorkShopTableViewCell.swift */,
+			);
+			path = Workshop;
+			sourceTree = "<group>";
+		};
+		0114B2AB22840AC600D97DC2 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				0114B2AC22840AE100D97DC2 /* ChatViewController.swift */,
+				0114B2AE22840DAF00D97DC2 /* Message.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		0114B2B022841CB200D97DC2 /* Appointment */ = {
+			isa = PBXGroup;
+			children = (
+				0114B2B1228426B600D97DC2 /* ViewAppointmentViewController.swift */,
+			);
+			path = Appointment;
+			sourceTree = "<group>";
+		};
+		6FAC9937621BD6C1817F8DD5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AC083CBA0A1841CE40E00E62 /* Pods-ZainAutomotiveSolution.debug.xcconfig */,
+				18EFDCF43110B549F73CC951 /* Pods-ZainAutomotiveSolution.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B0970F7AED056B8E4929088E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				80512CB0CA349F16404452BF /* Pods_ZainAutomotiveSolution.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +180,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0114B289227C808B00D97DC2 /* Build configuration list for PBXNativeTarget "ZainAutomotiveSolution" */;
 			buildPhases = (
+				FD38D33FE8E67A5090B9D8C3 /* [CP] Check Pods Manifest.lock */,
 				0114B273227C808800D97DC2 /* Sources */,
 				0114B274227C808800D97DC2 /* Frameworks */,
 				0114B275227C808800D97DC2 /* Resources */,
+				9D721BA058CA2DC114572170 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -123,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0114B285227C808B00D97DC2 /* LaunchScreen.storyboard in Resources */,
+				0114B291227D285D00D97DC2 /* GoogleService-Info.plist in Resources */,
 				0114B282227C808B00D97DC2 /* Assets.xcassets in Resources */,
 				0114B280227C808800D97DC2 /* Main.storyboard in Resources */,
 			);
@@ -130,13 +242,90 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9D721BA058CA2DC114572170 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ZainAutomotiveSolution/Pods-ZainAutomotiveSolution-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ZainAutomotiveSolution/Pods-ZainAutomotiveSolution-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FD38D33FE8E67A5090B9D8C3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZainAutomotiveSolution-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0114B273227C808800D97DC2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0114B2A82283CFD700D97DC2 /* Workshop.swift in Sources */,
 				0114B27D227C808800D97DC2 /* ViewController.swift in Sources */,
+				0114B298227D808400D97DC2 /* FirebaseController.swift in Sources */,
+				0114B2A42283810900D97DC2 /* ViewWorkshopsTableViewController.swift in Sources */,
+				0114B28D227C86D500D97DC2 /* ViewCarsTableViewController.swift in Sources */,
+				0114B29E227EE8B000D97DC2 /* AddCarViewController.swift in Sources */,
+				0114B2B62285B21500D97DC2 /* WorkShopTableViewCell.swift in Sources */,
+				0114B2A02282E91100D97DC2 /* WorkshopMapViewController.swift in Sources */,
+				0114B29A227D842C00D97DC2 /* MulticastDelegate.swift in Sources */,
+				0114B296227D7F1500D97DC2 /* Car.swift in Sources */,
+				0114B2AD22840AE100D97DC2 /* ChatViewController.swift in Sources */,
+				0114B28F227D0F9400D97DC2 /* CarsTableViewCell.swift in Sources */,
+				0114B2AF22840DAF00D97DC2 /* Message.swift in Sources */,
 				0114B27B227C808800D97DC2 /* AppDelegate.swift in Sources */,
+				0114B294227D7ED900D97DC2 /* DatabaseProtocol.swift in Sources */,
+				0114B2B2228426B600D97DC2 /* ViewAppointmentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +469,7 @@
 		};
 		0114B28A227C808B00D97DC2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC083CBA0A1841CE40E00E62 /* Pods-ZainAutomotiveSolution.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -297,6 +487,7 @@
 		};
 		0114B28B227C808B00D97DC2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 18EFDCF43110B549F73CC951 /* Pods-ZainAutomotiveSolution.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
