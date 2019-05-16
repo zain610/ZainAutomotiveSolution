@@ -27,6 +27,7 @@
 		0114B2AF22840DAF00D97DC2 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0114B2AE22840DAF00D97DC2 /* Message.swift */; };
 		0114B2B2228426B600D97DC2 /* ViewAppointmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0114B2B1228426B600D97DC2 /* ViewAppointmentViewController.swift */; };
 		0114B2B62285B21500D97DC2 /* WorkShopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0114B2B52285B21500D97DC2 /* WorkShopTableViewCell.swift */; };
+		015813AD228D5CCA00786903 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015813AC228D5CCA00786903 /* SignInViewController.swift */; };
 		C0FEB1DF6122B1984405B683 /* Pods_ZainAutomotiveSolution.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80512CB0CA349F16404452BF /* Pods_ZainAutomotiveSolution.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		0114B2AE22840DAF00D97DC2 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		0114B2B1228426B600D97DC2 /* ViewAppointmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAppointmentViewController.swift; sourceTree = "<group>"; };
 		0114B2B52285B21500D97DC2 /* WorkShopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkShopTableViewCell.swift; sourceTree = "<group>"; };
+		015813AC228D5CCA00786903 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		18EFDCF43110B549F73CC951 /* Pods-ZainAutomotiveSolution.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZainAutomotiveSolution.release.xcconfig"; path = "Target Support Files/Pods-ZainAutomotiveSolution/Pods-ZainAutomotiveSolution.release.xcconfig"; sourceTree = "<group>"; };
 		80512CB0CA349F16404452BF /* Pods_ZainAutomotiveSolution.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZainAutomotiveSolution.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC083CBA0A1841CE40E00E62 /* Pods-ZainAutomotiveSolution.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZainAutomotiveSolution.debug.xcconfig"; path = "Target Support Files/Pods-ZainAutomotiveSolution/Pods-ZainAutomotiveSolution.debug.xcconfig"; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 		0114B279227C808800D97DC2 /* ZainAutomotiveSolution */ = {
 			isa = PBXGroup;
 			children = (
+				015813AB228D5C9200786903 /* UserSignIn */,
 				0114B2B022841CB200D97DC2 /* Appointment */,
 				0114B2AB22840AC600D97DC2 /* Chat */,
 				0114B2AA22840A3A00D97DC2 /* Workshop */,
@@ -156,6 +159,14 @@
 			path = Appointment;
 			sourceTree = "<group>";
 		};
+		015813AB228D5C9200786903 /* UserSignIn */ = {
+			isa = PBXGroup;
+			children = (
+				015813AC228D5CCA00786903 /* SignInViewController.swift */,
+			);
+			path = UserSignIn;
+			sourceTree = "<group>";
+		};
 		6FAC9937621BD6C1817F8DD5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +196,7 @@
 				0114B274227C808800D97DC2 /* Frameworks */,
 				0114B275227C808800D97DC2 /* Resources */,
 				9D721BA058CA2DC114572170 /* [CP] Embed Pods Frameworks */,
+				16F05EB9C3738088E8325E14 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -243,6 +255,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		16F05EB9C3738088E8325E14 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ZainAutomotiveSolution/Pods-ZainAutomotiveSolution-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ZainAutomotiveSolution/Pods-ZainAutomotiveSolution-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9D721BA058CA2DC114572170 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -255,6 +289,7 @@
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
@@ -269,6 +304,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
@@ -317,6 +353,7 @@
 				0114B28D227C86D500D97DC2 /* ViewCarsTableViewController.swift in Sources */,
 				0114B29E227EE8B000D97DC2 /* AddCarViewController.swift in Sources */,
 				0114B2B62285B21500D97DC2 /* WorkShopTableViewCell.swift in Sources */,
+				015813AD228D5CCA00786903 /* SignInViewController.swift in Sources */,
 				0114B2A02282E91100D97DC2 /* WorkshopMapViewController.swift in Sources */,
 				0114B29A227D842C00D97DC2 /* MulticastDelegate.swift in Sources */,
 				0114B296227D7F1500D97DC2 /* Car.swift in Sources */,

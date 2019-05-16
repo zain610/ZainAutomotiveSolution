@@ -10,5 +10,6 @@ target 'ZainAutomotiveSolution' do
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
   pod 'Cosmos', '~> 19.0'
+  pod 'GoogleSignIn'
 
 end

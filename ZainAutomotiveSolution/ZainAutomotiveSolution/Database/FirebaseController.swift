@@ -11,6 +11,8 @@ import Firebase
 import FirebaseAuth
 import FirebaseFirestore
 
+import GoogleSignIn
+
 class FirebaseController: NSObject, DatabaseProtocol {
     
 //    var defaultCarList: Car
@@ -28,6 +30,9 @@ class FirebaseController: NSObject, DatabaseProtocol {
     
     var carList: [Car]
     var workshopList: [Workshop]
+    
+    
+    var provider = GoogleAuthSignInMethod
 //    var defaultTeam: Team
     
     
@@ -43,6 +48,11 @@ class FirebaseController: NSObject, DatabaseProtocol {
         
         super.init()
         
+//        authController.google
+
+        
+    }
+    func signInAnon() {
         //START THE PROCESS of signing in    with an anonymous account
         authController.signInAnonymously { (authResult, error) in
             guard authResult != nil else{
