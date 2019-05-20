@@ -7,14 +7,12 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 
 class ViewCarsTableViewController: UITableViewController, DatabaseListener {
     
-    
-    
-    
-    
+    var user: User?
     let SECTION_CARS = 0
     let CELL_CAR = "carCell"
     let SEGUE_IDENTIFIER = "selectWorkshopSegue"
@@ -34,6 +32,8 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener {
         super.viewDidLoad()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         databaseController = appDelegate.databaseController
+        
+        self.navigationItem.title = "\(String(describing: user?.displayName))'s Garage"
         
         let searchController = UISearchController(searchResultsController: nil);
         searchController.searchResultsUpdater = self as? UISearchResultsUpdating

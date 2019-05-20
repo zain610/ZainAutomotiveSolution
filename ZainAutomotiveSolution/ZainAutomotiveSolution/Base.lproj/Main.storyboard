@@ -109,7 +109,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Series" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10c-Yo-5kx">
-                                <rect key="frame" x="16" y="220" width="48" height="21"/>
+                                <rect key="frame" x="16" y="220" width="48" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -136,7 +136,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dS5-zc-NmR">
-                                <rect key="frame" x="19" y="369" width="92" height="21"/>
+                                <rect key="frame" x="19" y="368.5" width="92" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="xpd-v4-Yvh"/>
                                 </constraints>
@@ -225,7 +225,7 @@
         <!--Sign In View Controller-->
         <scene sceneID="fka-j9-K7S">
             <objects>
-                <viewController id="pgr-nR-hQs" customClass="SignInViewController" customModule="ZainAutomotiveSolution" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InitialPage" id="pgr-nR-hQs" customClass="SignInViewController" customModule="ZainAutomotiveSolution" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xuh-Os-5uF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -262,8 +262,17 @@
                                 <rect key="frame" x="117" y="74" width="184" height="171"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gjv-ot-knv">
+                                <rect key="frame" x="82" y="488" width="188" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <state key="normal" title="Google Sign In"/>
+                                <connections>
+                                    <segue destination="cJI-CW-wlD" kind="show" identifier="viewCarsSegue" id="bqR-Ka-JYl"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hyJ-T1-Frr">
-                                <rect key="frame" x="129" y="401" width="154" height="43"/>
+                                <rect key="frame" x="132" y="404" width="154" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <state key="normal" title="Login"/>
@@ -273,7 +282,7 @@
                         <viewLayoutGuide key="safeArea" id="J2W-JE-gf5"/>
                     </view>
                     <connections>
-                        <outlet property="googleButton" destination="hyJ-T1-Frr" id="fyD-Iq-1M4"/>
+                        <outlet property="googleButton" destination="Gjv-ot-knv" id="Nqz-o5-bqQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iBh-JL-d6S" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -470,7 +479,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bqs-Gh-tcv" customClass="CosmosView" customModule="Cosmos">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bqs-Gh-tcv" customClass="CosmosView" customModule="Cosmos">
                                 <rect key="frame" x="110" y="569" width="117" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
@@ -587,4 +596,7 @@
         <image name="Jeep Wrangler JK" width="300" height="168"/>
         <image name="Logo" width="500" height="500"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="v3Y-Gf-jQo"/>
+    </inferredMetricsTieBreakers>
 </document>

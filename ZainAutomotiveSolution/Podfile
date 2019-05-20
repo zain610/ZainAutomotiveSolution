@@ -8,6 +8,7 @@ target 'ZainAutomotiveSolution' do
   # Pods for ZainAutomotiveSolution
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
+  pod 'Firebase/UI
   pod 'Firebase/Firestore'
   pod 'Cosmos', '~> 19.0'
   pod 'GoogleSignIn'

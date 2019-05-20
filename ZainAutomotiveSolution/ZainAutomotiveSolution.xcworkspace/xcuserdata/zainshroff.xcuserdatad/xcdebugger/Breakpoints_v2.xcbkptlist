@@ -6,15 +6,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ZainAutomotiveSolution/Database/FirebaseController.swift"
-            timestampString = "579704090.966347"
+            timestampString = "580052695.389542"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "parseCarSnapshot(snapshot:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ZainAutomotiveSolution/Database/FirebaseController.swift"
-            timestampString = "579704090.966503"
+            timestampString = "580052695.391176"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
             landmarkName = "FirebaseController"
             landmarkType = "3">
             <Locations>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ZainAutomotiveSolution/Database/FirebaseController.swift"
-            timestampString = "579704090.966568"
+            timestampString = "580052695.392007"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "setUpListeners()"
             landmarkType = "7">
             <Locations>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ZainAutomotiveSolution/Database/FirebaseController.swift"
-            timestampString = "579704090.9666229"
+            timestampString = "580052695.39263"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
             landmarkName = "parseWorkshopSnapshot(snapshot:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ZainAutomotiveSolution/Database/FirebaseController.swift"
-            timestampString = "579704090.966677"
+            timestampString = "580052695.3932199"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "setUpListeners()"
             landmarkType = "7">
          </BreakpointContent>
@@ -234,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ZainAutomotiveSolution/Database/FirebaseController.swift"
-            timestampString = "579704090.966797"
+            timestampString = "580052695.39382"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "parseCarSnapshot(snapshot:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ZainAutomotiveSolution/Database/FirebaseController.swift"
-            timestampString = "579704090.966939"
+            timestampString = "580052695.394292"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
             landmarkName = "parseCarSnapshot(snapshot:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -368,6 +368,163 @@
             startingLineNumber = "100"
             endingLineNumber = "100"
             landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ZainAutomotiveSolution/AppDelegate.swift"
+            timestampString = "580052695.3948489"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "AppDelegate"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ZainAutomotiveSolution/Cars/ViewCarsTableViewController.swift"
+            timestampString = "580052695.394949"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ZainAutomotiveSolution/Cars/ViewCarsTableViewController.swift"
+            timestampString = "580052695.39503"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "ViewCarsTableViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ZainAutomotiveSolution.ViewCarsTableViewController.user.getter : Swift.Optional&lt;__C.FIRUser&gt;"
+                  moduleName = "ZainAutomotiveSolution"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zainshroff/Desktop/apps/ZainAutomotiveSolution/ZainAutomotiveSolution/ZainAutomotiveSolution/Cars/ViewCarsTableViewController.swift"
+                  timestampString = "580052695.455168"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "114">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ZainAutomotiveSolution.ViewCarsTableViewController.user.setter : Swift.Optional&lt;__C.FIRUser&gt;"
+                  moduleName = "ZainAutomotiveSolution"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zainshroff/Desktop/apps/ZainAutomotiveSolution/ZainAutomotiveSolution/ZainAutomotiveSolution/Cars/ViewCarsTableViewController.swift"
+                  timestampString = "580052695.458549"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "128">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ZainAutomotiveSolution.ViewCarsTableViewController.init(style: __C.UITableViewStyle) -&gt; ZainAutomotiveSolution.ViewCarsTableViewController"
+                  moduleName = "ZainAutomotiveSolution"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zainshroff/Desktop/apps/ZainAutomotiveSolution/ZainAutomotiveSolution/ZainAutomotiveSolution/Cars/ViewCarsTableViewController.swift"
+                  timestampString = "580052695.462566"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "35">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ZainAutomotiveSolution.ViewCarsTableViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; ZainAutomotiveSolution.ViewCarsTableViewController"
+                  moduleName = "ZainAutomotiveSolution"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zainshroff/Desktop/apps/ZainAutomotiveSolution/ZainAutomotiveSolution/ZainAutomotiveSolution/Cars/ViewCarsTableViewController.swift"
+                  timestampString = "580052695.4661601"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "57">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ZainAutomotiveSolution.ViewCarsTableViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;ZainAutomotiveSolution.ViewCarsTableViewController&gt;"
+                  moduleName = "ZainAutomotiveSolution"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zainshroff/Desktop/apps/ZainAutomotiveSolution/ZainAutomotiveSolution/ZainAutomotiveSolution/Cars/ViewCarsTableViewController.swift"
+                  timestampString = "580052695.469909"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "50">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ZainAutomotiveSolution/Cars/ViewCarsTableViewController.swift"
+            timestampString = "580052695.395123"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ZainAutomotiveSolution/Cars/ViewCarsTableViewController.swift"
+            timestampString = "580052695.395213"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "onCarListChange(change:cars:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

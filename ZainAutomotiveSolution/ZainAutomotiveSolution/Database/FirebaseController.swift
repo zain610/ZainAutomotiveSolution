@@ -52,16 +52,6 @@ class FirebaseController: NSObject, DatabaseProtocol {
 
         
     }
-    func signInAnon() {
-        //START THE PROCESS of signing in    with an anonymous account
-        authController.signInAnonymously { (authResult, error) in
-            guard authResult != nil else{
-                fatalError("firebase authentication failed!")
-            }
-            self.setUpListeners()
-        }
-    }
-    
     func setUpListeners() {
         carsRef = database.collection("Car")
         carsRef?.addSnapshotListener{ (querySnapshot, error) in
