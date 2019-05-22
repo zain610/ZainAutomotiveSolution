@@ -34,6 +34,8 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.hidesBackButton = true // hide the back button on this view controller 
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         databaseController = appDelegate.databaseController
         
@@ -54,7 +56,10 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener {
         searchController.searchResultsUpdater = self as? UISearchResultsUpdating
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Cars"
+        //attach the search controller to the views navigation controller
         navigationItem.searchController = searchController
+        //reload table
+        tableView.reloadData()
         
         // This view controller decides how the search controller is presented.
         definesPresentationContext = true

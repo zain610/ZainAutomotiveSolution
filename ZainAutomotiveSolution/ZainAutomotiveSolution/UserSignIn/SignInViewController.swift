@@ -32,6 +32,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
         googleSignInBtn.addTarget(self, action: #selector(handleGoogleSignin), for: .touchUpInside)
         
         
+        
     }
     
     //for each of the views that need info on the signed in user, attach a listener to Auth object.
@@ -42,6 +43,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
             if let user = user {
                 self.globalUser = user
                 print(user.displayName)
+                self.goToViewCars()
                 //
             }
             else {
@@ -66,15 +68,16 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
         
         GIDSignIn.sharedInstance()?.signIn()
         print("yoink success bithces")
-        
+        goToViewCars()
+    }
+    func goToViewCars() {
         //initiate the next view controller by finign the view on storyboard
         if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "viewCars") as? ViewCarsTableViewController {
-//            viewController.obj = newsObj
+            //            viewController.obj = newsObj
             if let navigator = navigationController {
-                navigator.pushViewController(viewController, animated: true)
+                navigator.show(viewController, sender: nil)
             }
         }
-        
     }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
