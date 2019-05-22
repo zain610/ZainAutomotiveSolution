@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class AddCarViewController: UIViewController  {
     
-
+    
     @IBOutlet weak var brandInput: UITextField!
     @IBOutlet weak var modelInput: UITextField!
     @IBOutlet weak var seriesInput: UITextField!

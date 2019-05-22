@@ -12,7 +12,11 @@ import FirebaseAuth
 
 class ViewCarsTableViewController: UITableViewController, DatabaseListener {
     
-    var user: User?
+    //User variables
+    var uid:String = ""
+    var displayName: String = ""
+    
+    
     let SECTION_CARS = 0
     let CELL_CAR = "carCell"
     let SEGUE_IDENTIFIER = "selectWorkshopSegue"
@@ -33,8 +37,19 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         databaseController = appDelegate.databaseController
         
-        self.navigationItem.title = "\(String(describing: user?.displayName))'s Garage"
+        let user = Auth.auth().currentUser
+        if let user = user {
+            self.uid = user.uid
+            self.displayName = user.displayName!
+        }
         
+        //Use firstName so the title may say "Zain's garage than Zain Shroff's Garage
+        let firstName = self.displayName.split(separator: " ", maxSplits: 10, omittingEmptySubsequences: false)[0]
+        print(firstName)
+        self.navigationItem.title = "\(String(describing: firstName.capitalized))'s Garage"
+        
+        
+        //implement search in table view controller
         let searchController = UISearchController(searchResultsController: nil);
         searchController.searchResultsUpdater = self as? UISearchResultsUpdating
         searchController.obscuresBackgroundDuringPresentation = false

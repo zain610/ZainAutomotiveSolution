@@ -14,6 +14,7 @@ import GoogleSignIn
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     var newUser: Person? = Person()
+    var globalUser: User?
     var window: UIWindow?
     var databaseController: DatabaseProtocol?
 
@@ -23,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         databaseController = FirebaseController()
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
+        
         
         
         return true
@@ -76,23 +78,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         guard let authentication = user.authentication else { return }
         guard let idToken = authentication.idToken else { return }
         guard let accessToken = authentication.accessToken else {return }
-        let credential = GoogleAuthProvider.credential(withIDToken: idToken,
-                                                       accessToken: accessToken)
+        
+        
+        let credential = GoogleAuthProvider.credential(withIDToken: idToken,accessToken: accessToken)
         print("Successfully signed into google with user: \(credential)")
         Auth.auth().signInAndRetrieveData(with: credential) { (authResult, error) in
             if let error = error {
                 print("Failed to create a Firebase User with Google account \(error)")
                 return
             }
-            //User is logged in
-            self.newUser?.id = user.userID                // For client-side use only!
-            self.newUser?.idToken = user.authentication.idToken // Safe to send to the server
-            self.newUser?.fullName = user.profile.name
-            self.newUser?.email = user.profile.email
-            print(self.newUser)
+//            self.globalUser = authResult?.user
             
-            print("Successfully logged into Firebase with Google: \(String(describing: self.newUser?.fullName))")
-            
+//            User is logged in
+//            self.newUser!.id = user.userID                // For client-side use only!
+//            self.newUser!.idToken = user.authentication.idToken // Safe to send to the server
+//            self.newUser!.fullName = user.profile.name
+//            self.newUser!.email = user.profile.email
+//            print("Successfully logged into Firebase with Google: \(String(describing: self.newUser?.fullName))")
         }
         
         

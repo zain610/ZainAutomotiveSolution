@@ -16,7 +16,7 @@ import GoogleSignIn
 class FirebaseController: NSObject, DatabaseProtocol {
     
 //    var defaultCarList: Car
-    
+    var globalUser: User?
     func updateCar(car: Car, brand: String, model: String, series: String, year: String, registration: String) {
         return
     }
@@ -44,14 +44,23 @@ class FirebaseController: NSObject, DatabaseProtocol {
         database = Firestore.firestore()
         carList = [Car]()
         workshopList = [Workshop]()
-        
-        
         super.init()
-        
+        //check if user has been fetched. if the field is not nil then set up listeners and set up listeners
+        Auth.auth().addStateDidChangeListener({ (auth, user) in
+            if let user = user {
+                self.globalUser = user
+                self.setUpListeners()
+            }
+            else {
+                print("error getting user  \(user!.displayName)")
+            }
+        })
 //        authController.google
 
         
     }
+    
+    //set up listeners for objects that are bound to change over time.
     func setUpListeners() {
         carsRef = database.collection("Car")
         carsRef?.addSnapshotListener{ (querySnapshot, error) in
@@ -160,6 +169,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
         return nil
     }
     
+    
     func getCarByRegistration(reference: String) -> Car? {
         for car in carList{
             if(car.registration == reference){
@@ -213,6 +223,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
     func removeListener(listener: DatabaseListener) {
         listeners.removeDelegate(listener)
     }
+    
     
     
 }

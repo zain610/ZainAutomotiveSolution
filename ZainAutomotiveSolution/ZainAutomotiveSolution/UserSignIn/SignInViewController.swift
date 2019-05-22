@@ -14,7 +14,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
     var globalUser: User?
     var handle: AuthStateDidChangeListenerHandle? = nil
     
-    @IBOutlet weak var googleButton: GIDSignInButton!
+    var googleSignInBtn: GIDSignInButton!
     weak var databaseController: DatabaseProtocol?
 
     override func viewDidLoad() {
@@ -22,10 +22,14 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         databaseController = appDelegate.databaseController
         
-        
         // Do any additional setup after loading the view.
-        
-        googleButton.addTarget(self, action: #selector(handleGoogleSignin), for: .touchUpInside)
+        GIDSignIn.sharedInstance()?.uiDelegate = self
+        //Creating the iconic google button and styling
+        googleSignInBtn = GIDSignInButton(frame: CGRect(x: 16, y: 599, width: 188, height: 48) )
+        googleSignInBtn.style = GIDSignInButtonStyle.standard
+        view.addSubview(googleSignInBtn)
+        //attach onclick listener to the button to handle signin
+        googleSignInBtn.addTarget(self, action: #selector(handleGoogleSignin), for: .touchUpInside)
         
         
     }
@@ -35,9 +39,10 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         handle = Auth.auth().addStateDidChangeListener({ (auth, user) in
-            if user != nil {
+            if let user = user {
                 self.globalUser = user
-                print("inside auth handler\(String(describing: user?.email))")
+                print(user.displayName)
+                //
             }
             else {
                 print("error, No user found!")
@@ -45,28 +50,43 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
             
         })
     }
+    //handle removing of baggage and unwanted listeners and dependencies when the before the view disappears
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         Auth.auth().removeStateDidChangeListener(handle!)
     }
     
     @objc func handleGoogleSignin() {
-        GIDSignIn.sharedInstance()?.uiDelegate = self
+        /*
+         - This method calls the sign in method from app delegate. so that the user can sign in
+         - After that we need to have the user go to the ViewCarsTVC. I do this programmatically by
+            1. searching for the view in the storyboard
+            2. push the view on the navigation view controller
+         */
+        
         GIDSignIn.sharedInstance()?.signIn()
         print("yoink success bithces")
-        performSegue(withIdentifier: "viewCarsSegue", sender: nil)
+        
+        //initiate the next view controller by finign the view on storyboard
+        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "viewCars") as? ViewCarsTableViewController {
+//            viewController.obj = newsObj
+            if let navigator = navigationController {
+                navigator.pushViewController(viewController, animated: true)
+            }
+        }
+        
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "viewCarsSegue" {
-            let destination = segue.destination as! ViewCarsTableViewController
-            print(globalUser?.email)
-            destination.user = globalUser
-            print("going to view cars table view \(String(describing: globalUser?.displayName))")
-            
-            
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "viewCarsSegue" {
+//            let destination = segue.destination as! ViewCarsTableViewController
+//            self.navigationController?.pushViewController(destination, animated: true)
+//            print(globalUser!.email)
+//            print("going to view cars table view \(String(describing: globalUser?.displayName))")
+//
+//
+//        }
+//    }
     
 
     
