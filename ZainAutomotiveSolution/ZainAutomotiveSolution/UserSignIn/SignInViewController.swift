@@ -22,6 +22,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         databaseController = appDelegate.databaseController
         
+        
         // Do any additional setup after loading the view.
         GIDSignIn.sharedInstance()?.uiDelegate = self
         //Creating the iconic google button and styling
@@ -64,11 +65,15 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
          - After that we need to have the user go to the ViewCarsTVC. I do this programmatically by
             1. searching for the view in the storyboard
             2. push the view on the navigation view controller
+         Edit: Had to add a check if the user was successfully retrieved. only then should the app segue to the next VC
          */
         
         GIDSignIn.sharedInstance()?.signIn()
-        print("yoink success bithces")
-        goToViewCars()
+        if self.globalUser != nil {
+            print("yoink success bithces")
+            goToViewCars()
+        }
+       
     }
     func goToViewCars() {
         //initiate the next view controller by finign the view on storyboard

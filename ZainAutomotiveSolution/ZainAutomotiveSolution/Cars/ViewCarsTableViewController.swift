@@ -8,7 +8,7 @@
 
 import UIKit
 import FirebaseAuth
-
+import GoogleSignIn
 
 class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISearchResultsUpdating {
     
@@ -37,7 +37,10 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.hidesBackButton = true // hide the back button on this view controller
+        self.navigationItem.hidesBackButton = true // hide the back button on this view controller
+        let leftNavButton = UIBarButtonItem.init(title: "Sign Out", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = leftNavButton
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         databaseController = appDelegate.databaseController
         
@@ -158,8 +161,9 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
             // delete item at indexPath
             print(action)
             print(indexPath)
+            //get car from filteredCars list
             let car = self.filteredCars[indexPath.row]
-            self.databaseController?.deleteCar(car: car)
+//            self.databaseController?.deleteCar(car: car)
             self.filteredCars.remove(at: indexPath.row)
             //find the index of the car in allCars[]
             let allCarsIndex = self.allCars.firstIndex(of: car)
@@ -197,6 +201,11 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
             let destination = segue.destination as! ViewWorkshopsTableViewController
             print("Going to View Workshops")
         }
+    }
+    
+    //Important to remove the search controller. resolves this issue: Attempting to load the VC while its deallocating. 
+    deinit {
+        self.searchController.view.removeFromSuperview()
     }
     
 

@@ -29,7 +29,7 @@ protocol DatabaseListener: AnyObject {
 protocol DatabaseProtocol: AnyObject {
 //    var defaultCarList: Car {get}
     func addCar(brand: String, model: String, series: String, year: String, registration: String) -> Car
-    func deleteCar(car: Car)
+//    func deleteCar(car: Car)
     func updateCar(car: Car, brand: String, model: String, series: String, year: String, registration: String)
     func addListener(listener: DatabaseListener)
     func removeListener(listener: DatabaseListener)

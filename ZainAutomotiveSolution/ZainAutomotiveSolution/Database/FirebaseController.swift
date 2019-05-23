@@ -15,6 +15,8 @@ import GoogleSignIn
 
 class FirebaseController: NSObject, DatabaseProtocol {
     
+    
+    
 //    var defaultCarList: Car
     var globalUser: User?
     func updateCar(car: Car, brand: String, model: String, series: String, year: String, registration: String) {
@@ -52,7 +54,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
                 self.setUpListeners()
             }
             else {
-                print("error getting user  \(user!.displayName)")
+                print("error getting user")
             }
         })
 //        authController.google
@@ -188,17 +190,17 @@ class FirebaseController: NSObject, DatabaseProtocol {
         car.id = id!.documentID
         return car
     }
-    func deleteCar(car: Car) {
-        //delete the car from the collection of Cars stored in Firestore
-        carsRef?.document(car.id).delete() { err in
-            if err != nil {
-                print("error deleting \(String(describing: err))")
-            } else {
-                print("Item deleted!")
-            }
-        }
-        print("\(carList)")
-    }
+//    func deleteCar(car: Car) {
+//        //delete the car from the collection of Cars stored in Firestore
+//        carsRef?.document(car.id).delete() { err in
+//            if err != nil {
+//                print("error deleting \(String(describing: err))")
+//            } else {
+//                print("Item deleted!")
+//            }
+//        }
+//        print("\(carList)")
+//    }
 
 //    func removeHeroFromTeam(hero: SuperHero, team: Team) {
 //        let index = team.heroes.index(of: hero)
