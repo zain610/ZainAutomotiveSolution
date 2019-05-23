@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 
 
-class ViewCarsTableViewController: UITableViewController, DatabaseListener {
+class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISearchResultsUpdating {
     
     //User variables
     var uid:String = ""
@@ -31,11 +31,13 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener {
     
     weak var editCar: Car?
     
+    let searchController = UISearchController(searchResultsController: nil);
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.hidesBackButton = true // hide the back button on this view controller 
+        navigationItem.hidesBackButton = true // hide the back button on this view controller
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         databaseController = appDelegate.databaseController
         
@@ -52,7 +54,6 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener {
         
         
         //implement search in table view controller
-        let searchController = UISearchController(searchResultsController: nil);
         searchController.searchResultsUpdater = self as? UISearchResultsUpdating
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Cars"
@@ -72,17 +73,34 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener {
         super.viewWillDisappear(animated)
         databaseController?.removeListener(listener: self)
     }
+    func searchBarIsEmpty() -> Bool {
+        //check if teh search bar is empty or not.
+        //return true if the empty or null
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    func isFiltering() -> Bool {
+        /* check if the search bar is active and is not empty */
+        return searchController.isActive && !searchBarIsEmpty()
+    }
+    
+    
     func updateSearchResults(for searchController: UISearchController) {
-        if let searchText = searchController.searchBar.text?.lowercased(), searchText.count > 0 {
+        /*
+         Search algorithm for search bar.
+         - first check if there is seach currently taking place, that is if teh searchbar is not empty and get the text
+         - filter through allcars for each car brand and model checking if the searchtext has the keyword present.
+         - If the search bar is active but no keyword, then give back all cars and lastly we reload the tableview.
+ */
+        if let searchText = searchController.searchBar.text?.lowercased(), searchBarIsEmpty() == false {
             filteredCars = allCars.filter({(car: Car) -> Bool in
-                return car.brand.lowercased().contains(searchText)
+                return (car.brand.lowercased().contains(searchText) || car.model.lowercased().contains(searchText))
             })
         }
         else {
-            filteredCars = allCars;
+            filteredCars = allCars; //return all cars
         }
         
-        tableView.reloadData();
+        tableView.reloadData(); //reload data
     }
 
     
@@ -106,25 +124,29 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if section == SECTION_CARS {
+        //if user is searching
+        if isFiltering() {
+            return filteredCars.count
+        }
+        //if the user is not filtering and should display all cars
+        else if isFiltering() == false {
             return allCars.count
         }
+        //else return 1
         else {
             return 1
         }
     }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let carCell = tableView.dequeueReusableCell(withIdentifier: CELL_CAR, for: indexPath) as! CarsTableViewCell
         if indexPath.section == SECTION_CARS {
-            let carCell = tableView.dequeueReusableCell(withIdentifier: CELL_CAR, for: indexPath) as! CarsTableViewCell
             let car = filteredCars[indexPath.row]
-            
             carCell.carLabel.text = "\(car.brand) \(car.model)"
             carCell.regoLabel.text = "Registration: \(car.registration) Current Status:\(car.status)"
             
             return carCell
         }
-        let carCell = tableView.dequeueReusableCell(withIdentifier: CELL_CAR, for: indexPath) as! CarsTableViewCell
-        
         carCell.carLabel.text = "Please try again! Nothing Found!"
         return carCell
         
