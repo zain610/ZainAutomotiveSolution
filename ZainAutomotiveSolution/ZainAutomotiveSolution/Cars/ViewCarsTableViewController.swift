@@ -102,7 +102,6 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
         else {
             filteredCars = allCars; //return all cars
         }
-        
         tableView.reloadData(); //reload data
     }
 
@@ -155,32 +154,50 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
         
         
     }
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
-        let delete = UITableViewRowAction(style: .default, title: "Delete") { (action, indexPath) in
-            // delete item at indexPath
-            print(action)
-            print(indexPath)
-            //get car from filteredCars list
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.section == SECTION_CARS {
+            return true
+        }
+        return false
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        /*
+         
+ 
+ */
+        if editingStyle == .delete && indexPath.section == SECTION_CARS {
             let car = self.filteredCars[indexPath.row]
-//            self.databaseController?.deleteCar(car: car)
-            self.filteredCars.remove(at: indexPath.row)
+            self.databaseController?.deleteCar(car: car)
             //find the index of the car in allCars[]
             let allCarsIndex = self.allCars.firstIndex(of: car)
             //remove the car from allCars[]
             self.allCars.remove(at: (allCarsIndex)!)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
-            self.tableView.reloadData()
-            
+            self.updateSearchResults(for: self.navigationItem.searchController!)
             
         }
-//        let update = UITableViewRowAction(style: .normal, title: "Update") { (action, indexPath) in
-//            print(action, indexPath)
-//            self.performSegue(withIdentifier: "updateCarSegue", sender: self)
-//        }
-        return [delete]
         
     }
+//    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+//
+//        let delete = UITableViewRowAction(style: .default, title: "Delete") { (action, indexPath) in
+//            // delete item at indexPath
+//            //get car from filteredCars list
+//
+//
+//
+//
+//
+//        }
+////        let update = UITableViewRowAction(style: .normal, title: "Update") { (action, indexPath) in
+////            print(action, indexPath)
+////            self.performSegue(withIdentifier: "updateCarSegue", sender: self)
+////        }
+//        return [delete]
+//
+//    }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: SEGUE_IDENTIFIER, sender: self)
     }

@@ -107,9 +107,10 @@ class FirebaseController: NSObject, DatabaseProtocol {
                 carList.append(newCar)
             }
             if change.type == .removed {
-                print("Removed Hero: \(change.document.data())")
+                print("Removed Car: \(change.document.data())")
                 if let index = getCarByIndex(reference: documentRef){
                     carList.remove(at: index)
+                    
                 }
             }
 
@@ -126,7 +127,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
 //                heroList[index].id = documentRef
 //            }
         
-        }
+            }
             
     }
     func parseWorkshopSnapshot(snapshot: QuerySnapshot){
@@ -164,7 +165,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
     
     func getCarByIndex(reference: String) -> Int? {
         for car in carList {
-            if(car.registration == reference) {
+            if(car.id == reference) {
                 return carList.firstIndex(of: car)
             }
         }
@@ -190,17 +191,19 @@ class FirebaseController: NSObject, DatabaseProtocol {
         car.id = id!.documentID
         return car
     }
-//    func deleteCar(car: Car) {
-//        //delete the car from the collection of Cars stored in Firestore
-//        carsRef?.document(car.id).delete() { err in
-//            if err != nil {
-//                print("error deleting \(String(describing: err))")
-//            } else {
-//                print("Item deleted!")
-//            }
-//        }
-//        print("\(carList)")
-//    }
+    func deleteCar(car: Car) {
+        //delete the car from the collection of Cars stored in Firestore
+        carsRef?.document(car.id).delete() { err in
+            if (err != nil) {
+                print("\(String(describing: err))")
+            }
+            else {
+                print("Successfully deleted: \(car.id)")
+            }
+        }
+        
+    }
+    
 
 //    func removeHeroFromTeam(hero: SuperHero, team: Team) {
 //        let index = team.heroes.index(of: hero)
