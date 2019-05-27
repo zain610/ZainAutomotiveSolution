@@ -163,41 +163,25 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        /*
-         
- 
- */
         if editingStyle == .delete && indexPath.section == SECTION_CARS {
+            /*
+             -find the car
+             - delete from db
+             - find the index of car from allCars remove it
+             - this triggers the .remove in firebasecontroller listener on carList
+             - play delete animation on the row and reload the table*/
             let car = self.filteredCars[indexPath.row]
             self.databaseController?.deleteCar(car: car)
             //find the index of the car in allCars[]
             let allCarsIndex = self.allCars.firstIndex(of: car)
             //remove the car from allCars[]
             self.allCars.remove(at: (allCarsIndex)!)
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
             self.updateSearchResults(for: self.navigationItem.searchController!)
             
         }
         
     }
-//    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-//
-//        let delete = UITableViewRowAction(style: .default, title: "Delete") { (action, indexPath) in
-//            // delete item at indexPath
-//            //get car from filteredCars list
-//
-//
-//
-//
-//
-//        }
-////        let update = UITableViewRowAction(style: .normal, title: "Update") { (action, indexPath) in
-////            print(action, indexPath)
-////            self.performSegue(withIdentifier: "updateCarSegue", sender: self)
-////        }
-//        return [delete]
-//
-//    }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: SEGUE_IDENTIFIER, sender: self)
     }

@@ -9,15 +9,20 @@
 import UIKit
 import FirebaseAuth
 
-class AddCarViewController: UIViewController  {
+class AddCarViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource  {
     
     
-    @IBOutlet weak var brandInput: UITextField!
+    
+    var brandData: [String] = [String]()
+    var selectedBrand: String = ""
+    
+    @IBOutlet weak var brandPickerView: UIPickerView!
     @IBOutlet weak var modelInput: UITextField!
     @IBOutlet weak var seriesInput: UITextField!
     @IBOutlet weak var yearInput: UITextField!
-    
     @IBOutlet weak var registrationInput: UITextField!
+    
+    var modelPickerView: UIPickerView! = UIPickerView()
     
     weak var databaseController: DatabaseProtocol?
     
@@ -27,14 +32,24 @@ class AddCarViewController: UIViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         databaseController = appDelegate.databaseController
+        
+        //ConnectData
+        self.brandPickerView.delegate = self
+        self.brandPickerView.dataSource = self
 
+        //brand Data
+        brandData = ["Jeep", "Dodge", "Chrysler", "Toyota", "Honda"]
         // Do any additional setup after loading the view.
         
         
         if editCar != nil {
-            brandInput.text = editCar?.brand
+            let brandIndex = brandData.firstIndex(of: (editCar?.brand)!)
+            brandPickerView.selectRow(brandIndex!, inComponent: 0, animated: true)
+            
             modelInput.text = editCar?.model
             seriesInput.text = editCar?.series
             yearInput.text = editCar?.year
@@ -42,9 +57,26 @@ class AddCarViewController: UIViewController  {
             
         }
     }
+
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return brandData.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return brandData[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedBrand = brandData[brandPickerView.selectedRow(inComponent: component)]
+        print(selectedBrand)
+    }
+    
     
     @IBAction func handleAddCarBtn(_ sender: Any) {
-        let brand = brandInput.text!
+        let brand = selectedBrand
         let model = modelInput.text!
         let series = seriesInput.text!
         let year = yearInput.text!
@@ -69,7 +101,7 @@ class AddCarViewController: UIViewController  {
         return true
     }
     func resetForm() {
-        brandInput.text! = ""
+//        brandInput.text! = ""
         modelInput.text! = ""
         seriesInput.text! = ""
         yearInput.text! = ""

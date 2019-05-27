@@ -32,7 +32,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
         //attach onclick listener to the button to handle signin
         googleSignInBtn.addTarget(self, action: #selector(handleGoogleSignin), for: .touchUpInside)
         
-        
+        self.view.backgroundColor = UIColor(red: 237, green: 246, blue: 255, alpha: 100)
         
     }
     
