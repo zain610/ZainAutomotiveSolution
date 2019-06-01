@@ -29,6 +29,7 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
     
     weak var databaseController: DatabaseProtocol?
     
+    
     weak var editCar: Car?
     
     let searchController = UISearchController(searchResultsController: nil);
@@ -37,12 +38,15 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.hidesBackButton = true // hide the back button on this view controller
-        let leftNavButton = UIBarButtonItem.init(title: "Sign Out", style: .plain, target: nil, action: nil)
-        self.navigationItem.backBarButtonItem = leftNavButton
+        self.navigationItem.hidesBackButton = true // hide the back button on next view controller
+        let leftNavButton = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(handleGoogleSignOut))
+        self.navigationItem.leftBarButtonItem = leftNavButton
+        
+        
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         databaseController = appDelegate.databaseController
+        
         
         let user = Auth.auth().currentUser
         if let user = user {
@@ -55,6 +59,7 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
         print(firstName)
         self.navigationItem.title = "\(String(describing: firstName.capitalized))'s Garage"
         
+      
         
         //implement search in table view controller
         searchController.searchResultsUpdater = self as? UISearchResultsUpdating
@@ -84,6 +89,24 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
     func isFiltering() -> Bool {
         /* check if the search bar is active and is not empty */
         return searchController.isActive && !searchBarIsEmpty()
+    }
+    @objc func handleGoogleSignOut() {
+        //        try! Auth.auth().signOut()
+        //
+        //        if let storyboard = self.storyboard {
+        //            let vc = storyboard.instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController
+        //            self.present(vc, animated: false, completion: nil)
+        //        }
+        
+        do {
+            try Auth.auth().signOut()
+            print("sign out successfully!")
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        self.navigationController?.popViewController(animated: true)
+        
+        
     }
     
     
@@ -145,8 +168,15 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
         if indexPath.section == SECTION_CARS {
             let car = filteredCars[indexPath.row]
             carCell.carLabel.text = "\(car.brand) \(car.model)"
-            carCell.regoLabel.text = "Registration: \(car.registration) Current Status:\(car.status)"
-            
+            carCell.regoLabel.text = "Registration: \(car.registration)"
+            if car.status == true {
+                carCell.statusLabel.text = "On Going"
+                carCell.statusLabel.textColor = UIColor(displayP3Red: 244, green: 108, blue: 128, alpha: 0)
+            }
+            else {
+                carCell.statusLabel.text = "Available"
+                carCell.statusLabel.textColor = UIColor(displayP3Red: 244, green: 108, blue: 128, alpha: 0)
+            }
             return carCell
         }
         carCell.carLabel.text = "Please try again! Nothing Found!"

@@ -204,15 +204,6 @@ class FirebaseController: NSObject, DatabaseProtocol {
         
     }
     
-
-//    func removeHeroFromTeam(hero: SuperHero, team: Team) {
-//        let index = team.heroes.index(of: hero)
-//        let removedHero = team.heroes.remove(at: index!)
-//        let removedRef = heroesRef?.document(removedHero.id)
-//
-//        teamsRef?.document(team.id).updateData(["heroes": FieldValue.arrayRemove([removedRef!])])
-//    }
-//
     func addListener(listener: DatabaseListener) {
         listeners.addDelegate(listener)
         if listener.listenerType == ListenerType.cars || listener.listenerType == ListenerType.all {
@@ -228,7 +219,6 @@ class FirebaseController: NSObject, DatabaseProtocol {
     func removeListener(listener: DatabaseListener) {
         listeners.removeDelegate(listener)
     }
-    
     
     
 }

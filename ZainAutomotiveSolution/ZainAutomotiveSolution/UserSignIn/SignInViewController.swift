@@ -26,11 +26,14 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
         // Do any additional setup after loading the view.
         GIDSignIn.sharedInstance()?.uiDelegate = self
         //Creating the iconic google button and styling
-        googleSignInBtn = GIDSignInButton(frame: CGRect(x: 16, y: 599, width: 188, height: 48) )
+        googleSignInBtn = GIDSignInButton(frame: CGRect(x: 16, y: 599, width: self.view.frame.width-48, height: 48) )
         googleSignInBtn.style = GIDSignInButtonStyle.standard
         view.addSubview(googleSignInBtn)
         //attach onclick listener to the button to handle signin
         googleSignInBtn.addTarget(self, action: #selector(handleGoogleSignin), for: .touchUpInside)
+        
+       
+        
         
         self.view.backgroundColor = UIColor(red: 237, green: 246, blue: 255, alpha: 100)
         
@@ -44,6 +47,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
             if let user = user {
                 self.globalUser = user
                 print(user.displayName)
+                
                 self.goToViewCars()
                 //
             }

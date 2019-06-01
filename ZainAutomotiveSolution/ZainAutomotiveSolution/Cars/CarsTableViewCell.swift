@@ -11,6 +11,8 @@ import UIKit
 class CarsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var carLabel: UILabel!
+    
+    @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var regoLabel: UILabel!
     @IBOutlet weak var imageLabel: UIImageView!
     

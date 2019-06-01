@@ -8,10 +8,11 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class AddCarViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource  {
     
-    
+    weak var databaseController: DatabaseProtocol?
     
     var brandData: [String] = [String]()
     var selectedBrand: String = ""
@@ -23,8 +24,6 @@ class AddCarViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     @IBOutlet weak var registrationInput: UITextField!
     
     var modelPickerView: UIPickerView! = UIPickerView()
-    
-    weak var databaseController: DatabaseProtocol?
     
     weak var editCar: Car?
     
@@ -41,7 +40,16 @@ class AddCarViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         self.brandPickerView.delegate = self
         self.brandPickerView.dataSource = self
 
-        //brand Data
+        //get brand Data from firestore
+        let db = Firestore.firestore()
+        let serverDataRef = db.collectionGroup("ServerData")
+        serverDataRef.addSnapshotListener { (querySnapshot, error) in
+            guard (querySnapshot?.documents) != nil else {
+                print("error fetching documents \(error!)")
+                return
+            }
+            self.parseBrandSnapshot(snapshot: querySnapshot!)
+        }
         brandData = ["Jeep", "Dodge", "Chrysler", "Toyota", "Honda"]
         // Do any additional setup after loading the view.
         
@@ -95,6 +103,11 @@ class AddCarViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
         
         if (brand.isEmpty || model.isEmpty || series.isEmpty || year.isEmpty || registration.isEmpty) {
+            let alert = UIAlertController(title: "Error in Submitting Data", message: "Please fill in all the fields in the form", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+                NSLog("The \"OK\" alert occured.")
+            }))
+            self.present(alert, animated: true, completion: nil)
             return false
         }
         
@@ -107,6 +120,12 @@ class AddCarViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         yearInput.text! = ""
         registrationInput.text! = ""
     }
-    
+    func parseBrandSnapshot(snapshot: QuerySnapshot){
+        snapshot.documentChanges.forEach { (change) in
+            let documentRef = change.document.documentID
+            let brandArray = change.document.data()
+            
+        }
+    }
 
 }

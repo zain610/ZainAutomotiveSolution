@@ -15,6 +15,7 @@ class ViewWorkshopsTableViewController: UITableViewController, DatabaseListener 
     
     let SECTION_WORKSHOPS = 0
     let CELL_WORKSHOP = "workshopCell"
+    let SEGUE_IDENTIFIER = "displayAppointmentSegue"
     
     var allWorkshops: [Workshop] = []
     var filteredWorkshops: [Workshop] = []
@@ -110,4 +111,14 @@ class ViewWorkshopsTableViewController: UITableViewController, DatabaseListener 
         return workshopCell
         
     }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: SEGUE_IDENTIFIER, sender: self)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "displayAppointmentSegue" {
+            let destination = segue.destination as! ViewAppointmentViewController
+            print("Going to view appointments")
+        }
+    }
+    
 }

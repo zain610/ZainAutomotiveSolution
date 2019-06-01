@@ -10,12 +10,39 @@ target 'ZainAutomotiveSolution' do
   pod 'Eureka'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
-  pod 'FirebaseUI', '~> 5.0'
   pod 'Firebase/Firestore'
   pod 'Cosmos', '~> 19.0'
   pod 'GoogleSignIn'
-  pod 'JTAppleCalendar', '~> 7.1'
-  pod 'MessageKit'
+  pod 'MessageKit', '~> 1.0.0'
+  pod 'Scaledrone', '~> 0.5.0'
+  pod 'MessageInputBar'
+
+  post_install do |installer|
+        installer.pods_project.targets.each do |target|
+            if target.name == 'Eureka'
+		target.build_configurations.each do |config|
+                    config.build_settings['SWIFT_VERSION'] = '4.2'
+                end
+            end
+	    if target.name == 'Cosmos'
+		target.build_configurations.each do |config|
+                    config.build_settings['SWIFT_VERSION'] = '4.2'
+                end
+	    end
+	    if target.name == 'Starscream'
+		target.build_configurations.each do |config|
+                    config.build_settings['SWIFT_VERSION'] = '4.2'
+                end
+	    end
+	    if target.name == 'Scaledrone'
+		target.build_configurations.each do |config|
+                    config.build_settings['SWIFT_VERSION'] = '4.2'
+                end
+	    end
+        end
+    end	
+
+  
   
 end
 
