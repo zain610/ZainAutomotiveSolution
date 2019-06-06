@@ -54,6 +54,7 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
             self.displayName = user.displayName!
         }
         
+        
         //Use firstName so the title may say "Zain's garage than Zain Shroff's Garage
         let firstName = self.displayName.split(separator: " ", maxSplits: 10, omittingEmptySubsequences: false)[0]
         print(firstName)
@@ -72,6 +73,17 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
         
         // This view controller decides how the search controller is presented.
         definesPresentationContext = true
+        
+        
+        tableView.rowHeight = UITableView.automaticDimension
+        
+//        let carCell = tableView.dequeueReusableCell(withIdentifier: CELL_CAR) as! CarsTableViewCell
+//        let imageView = carCell.imageLabel
+//        imageView?.translatesAutoresizingMaskIntoConstraints = false
+//        imageView?.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+//        imageView?.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+//        imageView?.widthAnchor.constraint(equalToConstant: 121).isActive = true
+//        imageView?.heightAnchor.constraint(equalToConstant: 68).isActive = true
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -91,12 +103,7 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
         return searchController.isActive && !searchBarIsEmpty()
     }
     @objc func handleGoogleSignOut() {
-        //        try! Auth.auth().signOut()
-        //
-        //        if let storyboard = self.storyboard {
-        //            let vc = storyboard.instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController
-        //            self.present(vc, animated: false, completion: nil)
-        //        }
+
         
         do {
             try Auth.auth().signOut()
@@ -171,11 +178,12 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
             carCell.regoLabel.text = "Registration: \(car.registration)"
             if car.status == true {
                 carCell.statusLabel.text = "On Going"
-                carCell.statusLabel.textColor = UIColor(displayP3Red: 244, green: 108, blue: 128, alpha: 0)
+//                carCell.statusLabel.textColor = UIColor(displayP3Red: 244, green: 108, blue: 128, alpha: 0)
             }
             else {
                 carCell.statusLabel.text = "Available"
-                carCell.statusLabel.textColor = UIColor(displayP3Red: 244, green: 108, blue: 128, alpha: 0)
+//                carCell.statusLabel.textColor = UIColor(displayP3Red: 244, green: 108, blue: 128, alpha: 0)
+                carCell.statusLabel.text = "WOW"
             }
             return carCell
         }

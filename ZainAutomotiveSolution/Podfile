@@ -8,14 +8,15 @@ target 'ZainAutomotiveSolution' do
 
   # Pods for ZainAutomotiveSolution
   pod 'Eureka'
+  pod 'Firebase/Storage'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
   pod 'Cosmos', '~> 19.0'
   pod 'GoogleSignIn'
   pod 'MessageKit', '~> 1.0.0'
-  pod 'Scaledrone', '~> 0.5.0'
   pod 'MessageInputBar'
+  pod 'ImageRow', '~> 4.0'  
 
   post_install do |installer|
         installer.pods_project.targets.each do |target|
@@ -38,6 +39,11 @@ target 'ZainAutomotiveSolution' do
 		target.build_configurations.each do |config|
                     config.build_settings['SWIFT_VERSION'] = '4.2'
                 end
+	    end
+	    if target.name == 'ImageRow'
+		target.build_configurations.each do |config|
+		    config.build_settings['SWIFT_VERSION'] = '4.2'
+		end
 	    end
         end
     end	
