@@ -36,7 +36,6 @@
 		014D1D7022A68D4600023F88 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014D1D6F22A68D4600023F88 /* AppSettings.swift */; };
 		015813AD228D5CCA00786903 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015813AC228D5CCA00786903 /* SignInViewController.swift */; };
 		0188A5072298D43B0031DBC3 /* CarInformationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0188A5062298D43B0031DBC3 /* CarInformationCollectionViewCell.swift */; };
-		0189D8E722A200CB00CC3944 /* AddCarTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0189D8E622A200CB00CC3944 /* AddCarTwoViewController.swift */; };
 		018C69C5229BB552005C8D72 /* DisplayCarCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018C69C4229BB552005C8D72 /* DisplayCarCollectionViewController.swift */; };
 		018C69C7229BBEF5005C8D72 /* SelectDateAndTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018C69C6229BBEF5005C8D72 /* SelectDateAndTimeViewController.swift */; };
 		018C69D3229F9D4F005C8D72 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018C69D2229F9D4F005C8D72 /* Extensions.swift */; };
@@ -76,7 +75,6 @@
 		014D1D6F22A68D4600023F88 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		015813AC228D5CCA00786903 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		0188A5062298D43B0031DBC3 /* CarInformationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarInformationCollectionViewCell.swift; sourceTree = "<group>"; };
-		0189D8E622A200CB00CC3944 /* AddCarTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarTwoViewController.swift; sourceTree = "<group>"; };
 		018C69C4229BB552005C8D72 /* DisplayCarCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayCarCollectionViewController.swift; sourceTree = "<group>"; };
 		018C69C6229BBEF5005C8D72 /* SelectDateAndTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDateAndTimeViewController.swift; sourceTree = "<group>"; };
 		018C69D2229F9D4F005C8D72 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -163,7 +161,6 @@
 				0114B28C227C86D500D97DC2 /* ViewCarsTableViewController.swift */,
 				0188A5062298D43B0031DBC3 /* CarInformationCollectionViewCell.swift */,
 				018C69C4229BB552005C8D72 /* DisplayCarCollectionViewController.swift */,
-				0189D8E622A200CB00CC3944 /* AddCarTwoViewController.swift */,
 			);
 			path = Cars;
 			sourceTree = "<group>";
@@ -375,7 +372,6 @@
 				0114B29E227EE8B000D97DC2 /* AddCarViewController.swift in Sources */,
 				0114B2B62285B21500D97DC2 /* WorkShopTableViewCell.swift in Sources */,
 				014D1D6922A671DB00023F88 /* UICollectionView+Additions.swift in Sources */,
-				0189D8E722A200CB00CC3944 /* AddCarTwoViewController.swift in Sources */,
 				015813AD228D5CCA00786903 /* SignInViewController.swift in Sources */,
 				018C69D3229F9D4F005C8D72 /* Extensions.swift in Sources */,
 				0114B2A02282E91100D97DC2 /* WorkshopMapViewController.swift in Sources */,

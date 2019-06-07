@@ -10,84 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Display Car Collection View Controller-->
-        <scene sceneID="hC8-Fl-kuP">
-            <objects>
-                <collectionViewController id="fkl-O3-wqJ" customClass="DisplayCarCollectionViewController" customModule="ZainAutomotiveSolution" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="JIt-Pn-emu">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="YJX-ge-YfD">
-                            <size key="itemSize" width="347" height="191"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="I8j-hG-c26" customClass="CarInformationCollectionViewCell" customModule="ZainAutomotiveSolution" customModuleProvider="target">
-                                <rect key="frame" x="14" y="0.0" width="347" height="191"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                    <rect key="frame" x="0.0" y="0.0" width="347" height="191"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Jeep Wrangler JK" translatesAutoresizingMaskIntoConstraints="NO" id="FH2-ad-vqX">
-                                            <rect key="frame" x="217" y="40" width="130" height="111"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="130" id="BCV-Pj-p5g"/>
-                                            </constraints>
-                                        </imageView>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Brand and Model" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kYj-Bh-aU9">
-                                            <rect key="frame" x="20" y="40" width="131" height="30"/>
-                                            <nil key="textColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Series and Year" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jKw-bj-25z">
-                                            <rect key="frame" x="20" y="81" width="131" height="30"/>
-                                            <nil key="textColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="STATUS" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HVw-wI-gK3">
-                                            <rect key="frame" x="20" y="122" width="131" height="30"/>
-                                            <nil key="textColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
-                                    </subviews>
-                                </view>
-                                <constraints>
-                                    <constraint firstItem="jKw-bj-25z" firstAttribute="trailing" secondItem="kYj-Bh-aU9" secondAttribute="trailing" id="1zJ-1g-LVT"/>
-                                    <constraint firstItem="FH2-ad-vqX" firstAttribute="leading" secondItem="kYj-Bh-aU9" secondAttribute="trailing" constant="66" id="2BC-dk-rP9"/>
-                                    <constraint firstItem="kYj-Bh-aU9" firstAttribute="top" secondItem="I8j-hG-c26" secondAttribute="topMargin" constant="12" id="3zb-c2-iGU"/>
-                                    <constraint firstItem="HVw-wI-gK3" firstAttribute="top" secondItem="jKw-bj-25z" secondAttribute="bottom" constant="11" id="9Ji-l8-tkF"/>
-                                    <constraint firstItem="jKw-bj-25z" firstAttribute="trailing" secondItem="HVw-wI-gK3" secondAttribute="trailing" id="dpF-G2-ED7"/>
-                                    <constraint firstItem="jKw-bj-25z" firstAttribute="leading" secondItem="HVw-wI-gK3" secondAttribute="leading" id="gwx-ip-aE5"/>
-                                    <constraint firstItem="jKw-bj-25z" firstAttribute="top" secondItem="kYj-Bh-aU9" secondAttribute="bottom" constant="11" id="kVd-Oc-AEC"/>
-                                    <constraint firstItem="FH2-ad-vqX" firstAttribute="centerY" secondItem="I8j-hG-c26" secondAttribute="centerY" id="o1I-Qx-Z6D"/>
-                                    <constraint firstItem="kYj-Bh-aU9" firstAttribute="leading" secondItem="I8j-hG-c26" secondAttribute="leadingMargin" constant="12" id="pfj-bw-krW"/>
-                                    <constraint firstItem="jKw-bj-25z" firstAttribute="leading" secondItem="kYj-Bh-aU9" secondAttribute="leading" id="xxd-wm-OSZ"/>
-                                    <constraint firstItem="FH2-ad-vqX" firstAttribute="top" secondItem="kYj-Bh-aU9" secondAttribute="top" id="yKQ-rg-euI"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="carStatus" destination="HVw-wI-gK3" id="FoY-v8-PfJ"/>
-                                    <outlet property="carSubTitle" destination="jKw-bj-25z" id="W63-2A-K2y"/>
-                                    <outlet property="carTitle" destination="kYj-Bh-aU9" id="Q8Q-Ee-SVh"/>
-                                </connections>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="fkl-O3-wqJ" id="B4X-CB-IEf"/>
-                            <outlet property="delegate" destination="fkl-O3-wqJ" id="4Eh-Ma-KAh"/>
-                        </connections>
-                    </collectionView>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="e3K-gh-XdG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="685.60000000000002" y="139.880059970015"/>
-        </scene>
         <!--Zain's Garage-->
         <scene sceneID="HFC-I3-W55">
             <objects>
@@ -326,13 +248,25 @@
                     <view key="view" contentMode="scaleToFill" id="Zcb-2u-ou8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E6Q-8Z-gcA" customClass="CVCalendarMenuView" customModule="CVCalendar">
+                                <rect key="frame" x="16" y="43" width="343" height="91"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pOY-Cc-M7m" customClass="CVCalendarView" customModule="CVCalendar">
+                                <rect key="frame" x="16" y="142" width="343" height="186"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="iGY-mW-2Es"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gG0-XG-RUN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1651" y="1325"/>
+            <point key="canvasLocation" x="1650.4000000000001" y="1324.5877061469266"/>
         </scene>
         <!--View Workshops Table View Controller-->
         <scene sceneID="jRz-Xc-aCK">

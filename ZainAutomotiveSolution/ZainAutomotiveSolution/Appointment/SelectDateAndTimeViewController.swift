@@ -7,14 +7,40 @@
 //
 
 import UIKit
-
-class SelectDateAndTimeViewController: UIViewController {
-
+import CVCalendar
+class SelectDateAndTimeViewController: UIViewController, CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
+    
+    @IBOutlet weak var calendarView: CVCalendarView!
+    
+    @IBOutlet weak var menuView: CVCalendarMenuView!
+    
+//    private var currentCalendar: Calendar?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
 
         // Do any additional setup after loading the view.
     }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        calendarView.commitCalendarViewUpdate()
+        menuView.commitMenuViewUpdate()
+        
+    }
+    func presentationMode() -> CalendarMode {
+        return .monthView
+    }
+    
+    func firstWeekday() -> Weekday {
+        return .sunday
+    }
+//    func calendar() -> Calendar? {
+//        return currentCalendar
+//    }
     
 
     /*

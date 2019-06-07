@@ -17,6 +17,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
     
     
     
+    
 //    var defaultCarList: Car
     var globalUser: User?
     func updateCar(car: Car, brand: String, model: String, series: String, year: String, registration: String) {
@@ -29,9 +30,11 @@ class FirebaseController: NSObject, DatabaseProtocol {
     var database: Firestore
     var carsRef: CollectionReference?
     var workshopsRef: CollectionReference?
+    var serverDataRef: Query?
     
     var carList: [Car]
     var workshopList: [Workshop]
+    var serverDataList: [String: Any]
     
     
     var provider = GoogleAuthSignInMethod
@@ -46,6 +49,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
         database = Firestore.firestore()
         carList = [Car]()
         workshopList = [Workshop]()
+        serverDataList = [String: Any]()
         super.init()
         //check if user has been fetched. if the field is not nil then set up listeners and set up listeners
         Auth.auth().addStateDidChangeListener({ (auth, user) in
@@ -64,6 +68,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
     
     //set up listeners for objects that are bound to change over time.
     func setUpListeners() {
+        //get car data
         carsRef = database.collection("Car")
         carsRef?.addSnapshotListener{ (querySnapshot, error) in
             guard (querySnapshot?.documents) != nil else {
@@ -72,7 +77,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
             }
             self.parseCarSnapshot(snapshot: querySnapshot!)
         }
-        
+        //get workshop data
         workshopsRef = database.collection("Workshops")
         workshopsRef?.addSnapshotListener{ (querySnapshot, error) in
             guard (querySnapshot?.documents) != nil else {
@@ -81,6 +86,17 @@ class FirebaseController: NSObject, DatabaseProtocol {
             }
             self.parseWorkshopSnapshot(snapshot: querySnapshot!)
         }
+        //get serverData
+        serverDataRef = database.collectionGroup("ServerData")
+        serverDataRef?.addSnapshotListener { (querySnapshot, error) in
+            guard (querySnapshot?.documents) != nil else {
+                print("error fetching document \(error!)")
+                return
+            }
+            self.parseServerData(snapshot: querySnapshot!)
+        }
+        
+        
     }
     func parseCarSnapshot(snapshot: QuerySnapshot){
         snapshot.documentChanges.forEach { (change) in
@@ -162,6 +178,17 @@ class FirebaseController: NSObject, DatabaseProtocol {
         }
         
     }
+    func parseServerData(snapshot: QuerySnapshot) {
+        /*
+         We have to extract all the data from the firestore. We do not disect it further cos the data we need is dynamic in nature
+         That means we need data based on user's descision. So extract Honda Models only if honda is picked, etc
+         */
+        snapshot.documentChanges.forEach { (change) in
+            let serverData = change.document.data()
+            serverDataList = serverData
+            
+        }
+    }
     
     func getCarByIndex(reference: String) -> Int? {
         for car in carList {
@@ -180,6 +207,9 @@ class FirebaseController: NSObject, DatabaseProtocol {
             }
         }
         return nil
+    }
+    func getServerData() -> [String : Any] {
+        return serverDataList
     }
     
     func addCar(brand: String, model: String, series: String, year: String, registration: String) -> Car {

@@ -54,9 +54,12 @@ struct Message: MessageType {
     init?(document: QueryDocumentSnapshot) {
         let data = document.data()
         
-        guard let sentDate = data["created"] as? Date else {
-            return nil
-        }
+//        guard let sentDate = data["created"] as? Date else {
+//            return nil
+//        }
+        let timestamp: Timestamp = (data as AnyObject).value(forKey: "created")! as! Timestamp
+        let sentDate = timestamp.dateValue()
+
         guard let senderID = data["senderID"] as? String else {
             return nil
         }

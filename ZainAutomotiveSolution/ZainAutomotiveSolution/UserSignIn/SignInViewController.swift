@@ -81,7 +81,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
     }
     func goToViewCars() {
         //initiate the next view controller by finign the view on storyboard
-        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "viewCars") as? ViewCarsTableViewController {
+        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "chat") as? ChatViewController {
             //            viewController.obj = newsObj
             if let navigator = navigationController {
                 navigator.show(viewController, sender: nil)

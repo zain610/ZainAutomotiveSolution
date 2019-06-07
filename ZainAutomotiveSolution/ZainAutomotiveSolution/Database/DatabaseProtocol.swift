@@ -24,14 +24,19 @@ protocol DatabaseListener: AnyObject {
     var listenerType: ListenerType {get set}
     func onCarListChange(change: DatabaseChange, cars: [Car])
     func onWorkshopListChange(change: DatabaseChange, workshops: [Workshop])
+    
 }
 
 protocol DatabaseProtocol: AnyObject {
 //    var defaultCarList: Car {get}
+    func getServerData() -> [String: Any]
     func addCar(brand: String, model: String, series: String, year: String, registration: String) -> Car
     func deleteCar(car: Car)
     func updateCar(car: Car, brand: String, model: String, series: String, year: String, registration: String)
     func addListener(listener: DatabaseListener)
     func removeListener(listener: DatabaseListener)
 }
+
+
+
 

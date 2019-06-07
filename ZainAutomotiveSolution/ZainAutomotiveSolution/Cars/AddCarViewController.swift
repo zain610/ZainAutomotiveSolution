@@ -32,6 +32,8 @@ class AddCarViewController: FormViewController  {
     var registrationValue: String = ""
     var imageValue: UIImage = UIImage()
     
+    var createCarButton: UIButton = UIButton()
+    
     weak var editCar: Car?
     
     override func viewDidLoad() {
@@ -41,18 +43,10 @@ class AddCarViewController: FormViewController  {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         databaseController = appDelegate.databaseController
-
-        //get brand Data from firestore
-        let db = Firestore.firestore()
-        let serverDataRef = db.collectionGroup("ServerData")
-        serverDataRef.addSnapshotListener { (querySnapshot, error) in
-            guard (querySnapshot?.documents) != nil else {
-                print("error fetching documents \(error!)")
-                return
-            }
-            self.parseCarSnapshot(snapshot: querySnapshot!)
-            self.form.rowBy(tag: "Brand")?.updateCell()
-        }
+        self.allCars = (databaseController?.getServerData())!
+        
+        
+        self.form.rowBy(tag: "Brand")?.updateCell()
         
        
         // Do any additional setup after loading the view.
@@ -115,7 +109,7 @@ class AddCarViewController: FormViewController  {
                     self.modelValue = input.value!
                     //loop through all rows or input fields -> find the Series Row and trigger an update
                     for row in self.form.allRows {
-                        if row.tag == "Model" {
+                        if row.tag == "Series" {
                             row.updateCell()
                         }
                     }
@@ -161,7 +155,7 @@ class AddCarViewController: FormViewController  {
                 })
                 row.tag = "Year"
                 row.title = "Model Year"
-                row.value = row.options.first
+                row.value = "Select a Year"
                 //calback fro when teh cell is updated
                 row.cellUpdate({ (cell, row) in
                     self.carYear = (self.carSeries[self.seriesValue] as! [String])
@@ -171,6 +165,8 @@ class AddCarViewController: FormViewController  {
                 })
                 row.onChange({ (input) in
                     self.yearValue = input.value!
+                    self.view.addSubview(self.createCarButton)
+                    
                 })
 
         }
@@ -185,61 +181,55 @@ class AddCarViewController: FormViewController  {
             })
             
         }
-        let createCarButton = UIButton()
+        
+
         createCarButton.setTitle("Create Car", for: .normal)
         createCarButton.setTitleColor(UIColor.blue, for: .normal)
-        createCarButton.frame = CGRect(x: 8, y: view.frame.maxY - 16, width: 300, height: 500)
+        createCarButton.frame = CGRect(x: self.view.frame.midX - 100, y: self.view.frame.midY + 300, width: 200, height: 100)
         createCarButton.addTarget(self, action: #selector(handleAddCarBtn(_:)), for: .touchUpInside)
-        self.view.addSubview(createCarButton)
+        
         
         }
 
-    @IBAction func handleAddCarBtn(_ sender: Any) {
+    @objc func handleAddCarBtn(_ sender: Any) {
+        let registrationInput = UIAlertController(title: "Enter Registration Number", message: "", preferredStyle: .alert)
+        registrationInput.addAction(UIAlertAction(title: "Enter", style: .default, handler: { [weak registrationInput] (_) in
+            let textField = registrationInput!.textFields![0]
+            self.registrationValue = textField.text!
+            print(textField.text)
+            self.addCar()
+        }  ))
+        registrationInput.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        registrationInput.addTextField { (textField: UITextField!) in
+            textField.placeholder = "Please Enter Rego here"
+        }
         
-//        let brand = selectedBrand
-//        let model = modelInput.text!
-//        let series = seriesInput.text!
-//        let year = yearInput.text!
-//        let registration = registrationInput.text!
-//
-//        if dataValidation(brand: brand, model: model, series: series, year: year, registration: registration) {
-//            let car = databaseController?.addCar(brand: brand, model: model, series: series, year: year, registration: registration)
-//            print("New Car added: \(car?.brand ?? "NO NEW CAR")) ")
-//            resetForm()
-//
-//        }
-//        _ = navigationController?.popViewController(animated: true)
+        self.present(registrationInput, animated: true, completion: nil)
+        
+    }
+    func addCar() {
+        
+        if dataValidation(brand: self.brandValue, model: self.modelValue, series: self.seriesValue, year: self.yearValue, registration: self.registrationValue) {
+            let car = databaseController?.addCar(brand: self.brandValue, model: self.modelValue, series: self.seriesValue, year: self.yearValue, registration: self.registrationValue)
+            print(car)
+            print("New Car added: \(car?.brand ?? "NO NEW CAR")) ")
+            
+        }
+        _ = navigationController?.popViewController(animated: true)
     }
 
-//    func dataValidation(brand: String, model: String, series: String, year: String, registration: String) -> Bool {
-//
-//
-//        if (brand.isEmpty || model.isEmpty || series.isEmpty || year.isEmpty || registration.isEmpty) {
-//            let alert = UIAlertController(title: "Error in Submitting Data", message: "Please fill in all the fields in the form", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
-//                NSLog("The \"OK\" alert occured.")
-//            }))
-//            self.present(alert, animated: true, completion: nil)
-//            return false
-//        }
-//
-//        return true
-//    }
-//    func resetForm() {
-////        brandInput.text! = ""
-//        modelInput.text! = ""
-//        seriesInput.text! = ""
-//        yearInput.text! = ""
-//        registrationInput.text! = ""
-//    }
-    func parseCarSnapshot(snapshot: QuerySnapshot){
-        /*
-         We have to extract all the data from the firestore. We do not disect it further cos the data we need is dynamic in nature
-         That means we need data based on user's descision. So extract Honda Models only if honda is picked, etc
-         */
-        snapshot.documentChanges.forEach { (change) in
-            let documentRef = change.document.documentID
-            self.allCars = change.document.data()
+    func dataValidation(brand: String, model: String, series: String, year: String, registration: String) -> Bool {
+
+
+        if (brand.isEmpty || model.isEmpty || series.isEmpty || year.isEmpty || registration.isEmpty) {
+            let alert = UIAlertController(title: "Error in Submitting Data", message: "Please fill in all the fields in the form", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+                NSLog("The \"OK\" alert occured.")
+            }))
+            self.present(alert, animated: true, completion: nil)
+            return false
         }
+
+        return true
     }
 }

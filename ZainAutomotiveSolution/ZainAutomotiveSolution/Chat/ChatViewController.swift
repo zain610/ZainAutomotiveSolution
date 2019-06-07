@@ -52,12 +52,9 @@ final class ChatViewController: MessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let id = user.displayName else {
-            navigationController?.popViewController(animated: true)
-            return
-        }
+        let id = user.uid
         
-        reference = db.collection(["channels", id, "thread"].joined(separator: "/"))
+        reference = db.collection(["Chat", id, "messages"].joined(separator: "/"))
         
         messageListener = reference?.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
@@ -124,6 +121,7 @@ final class ChatViewController: MessagesViewController {
     
     private func handleDocumentChange(_ change: DocumentChange) {
         guard var message = Message(document: change.document) else {
+            print(change.document.data()["created"])
             return
         }
         
@@ -184,7 +182,7 @@ extension ChatViewController: MessagesDataSource {
     
     
     func currentSender() -> Sender {
-        return Sender(id: user.uid, displayName: AppSettings.displayName)
+        return Sender(id: user.uid, displayName: user.displayName!)
     }
     
     func numberOfMessages(in messagesCollectionView: MessagesCollectionView) -> Int {
