@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseStorage
 
 import GoogleSignIn
 
@@ -28,9 +29,13 @@ class FirebaseController: NSObject, DatabaseProtocol {
     var listeners = MulticastDelegate<DatabaseListener>()
     var authController: Auth
     var database: Firestore
+    var storage: Storage
     var carsRef: CollectionReference?
     var workshopsRef: CollectionReference?
     var serverDataRef: Query?
+    var carImagesRef: StorageReference?
+    var storageRef: StorageReference?
+    
     
     var carList: [Car]
     var workshopList: [Workshop]
@@ -42,6 +47,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
     
     
     override init() {
+        
         //Run the FirebaseApp configure method.
         FirebaseApp.configure()
         //call auth and firestore
@@ -50,6 +56,9 @@ class FirebaseController: NSObject, DatabaseProtocol {
         carList = [Car]()
         workshopList = [Workshop]()
         serverDataList = [String: Any]()
+        //Init firebase storage
+        storage = Storage.storage()
+        
         super.init()
         //check if user has been fetched. if the field is not nil then set up listeners and set up listeners
         Auth.auth().addStateDidChangeListener({ (auth, user) in
@@ -95,6 +104,8 @@ class FirebaseController: NSObject, DatabaseProtocol {
             }
             self.parseServerData(snapshot: querySnapshot!)
         }
+        
+        carImagesRef = storage.reference().child("User_Cars")
         
         
     }

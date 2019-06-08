@@ -47,11 +47,12 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Jeep Wrangler JK" translatesAutoresizingMaskIntoConstraints="NO" id="KBD-el-IO1">
+                                        <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" image="Jeep Wrangler JK" translatesAutoresizingMaskIntoConstraints="NO" id="KBD-el-IO1">
                                             <rect key="frame" x="8" y="17" width="121" height="68"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="68" id="nNL-t9-z5f"/>
                                             </constraints>
+                                            <viewLayoutGuide key="safeArea" id="hNH-c3-g0q"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On Going" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgA-dU-odQ">
                                             <rect key="frame" x="66" y="97" width="72" height="21"/>
@@ -62,13 +63,14 @@
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jgA-dU-odQ" secondAttribute="trailing" constant="20" symbolic="YES" id="1w0-8m-lON"/>
                                         <constraint firstItem="jgA-dU-odQ" firstAttribute="leading" secondItem="2Le-bC-Ax6" secondAttribute="trailing" constant="8" id="AXU-gW-oAu"/>
                                         <constraint firstItem="2Le-bC-Ax6" firstAttribute="top" secondItem="KBD-el-IO1" secondAttribute="bottom" constant="12" id="BHU-NW-29u"/>
                                         <constraint firstItem="RSv-7Q-cVo" firstAttribute="leading" secondItem="Nw5-gN-kJF" secondAttribute="leading" id="IfH-wJ-j5O"/>
                                         <constraint firstItem="KBD-el-IO1" firstAttribute="top" secondItem="ZNz-Oq-lwt" secondAttribute="topMargin" constant="6" id="LwY-Oa-oR0"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="jgA-dU-odQ" secondAttribute="bottom" constant="8" id="NsQ-oE-fp0"/>
+                                        <constraint firstItem="jgA-dU-odQ" firstAttribute="bottom" secondItem="2Le-bC-Ax6" secondAttribute="bottom" id="O0u-4b-yBK"/>
                                         <constraint firstItem="Nw5-gN-kJF" firstAttribute="top" secondItem="ZNz-Oq-lwt" secondAttribute="topMargin" constant="10" id="T7N-V2-DMa"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="jgA-dU-odQ" secondAttribute="trailing" constant="221" id="TVo-c4-w39"/>
                                         <constraint firstItem="2Le-bC-Ax6" firstAttribute="leading" secondItem="ZNz-Oq-lwt" secondAttribute="leading" constant="8" id="V7K-Ig-f1D"/>
                                         <constraint firstItem="RSv-7Q-cVo" firstAttribute="trailing" secondItem="Nw5-gN-kJF" secondAttribute="trailing" id="Yhp-1l-bkM"/>
                                         <constraint firstAttribute="bottom" secondItem="2Le-bC-Ax6" secondAttribute="bottom" constant="18.5" id="bcz-Tn-n7M"/>
@@ -115,23 +117,7 @@
                     <view key="view" contentMode="scaleToFill" id="ho9-MI-CZs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y15-pJ-L0p">
-                                <rect key="frame" x="138" y="491" width="126" height="42"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="42" id="4G5-Gd-uOi"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                <state key="normal" title="Create Car"/>
-                                <connections>
-                                    <action selector="handleAddCarBtn:" destination="GSc-tL-2RO" eventType="touchUpInside" id="5sT-Wr-9Tk"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" red="0.92941176470588238" green="0.96470588235294119" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="xWq-gs-xgo" firstAttribute="bottom" secondItem="Y15-pJ-L0p" secondAttribute="bottom" constant="134" id="tir-zu-MHV"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="xWq-gs-xgo"/>
                     </view>
                 </viewController>
@@ -242,31 +228,19 @@
             <point key="canvasLocation" x="480.80000000000001" y="851.42428785607206"/>
         </scene>
         <!--Select Date And Time View Controller-->
-        <scene sceneID="REe-DH-pCd">
+        <scene sceneID="raf-jj-Qpm">
             <objects>
-                <viewController id="xOT-dN-tCZ" customClass="SelectDateAndTimeViewController" customModule="ZainAutomotiveSolution" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Zcb-2u-ou8">
+                <viewController id="Oyk-KR-6Zd" customClass="SelectDateAndTimeViewController" customModule="ZainAutomotiveSolution" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Jc9-uq-fUa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E6Q-8Z-gcA" customClass="CVCalendarMenuView" customModule="CVCalendar">
-                                <rect key="frame" x="16" y="43" width="343" height="91"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pOY-Cc-M7m" customClass="CVCalendarView" customModule="CVCalendar">
-                                <rect key="frame" x="16" y="142" width="343" height="186"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="iGY-mW-2Es"/>
+                        <viewLayoutGuide key="safeArea" id="Zyr-ks-ufg"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gG0-XG-RUN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qrb-aG-08q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1650.4000000000001" y="1324.5877061469266"/>
+            <point key="canvasLocation" x="1724" y="935.98200899550227"/>
         </scene>
         <!--View Workshops Table View Controller-->
         <scene sceneID="jRz-Xc-aCK">
@@ -589,6 +563,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1gH-6z-aix" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-425" y="853"/>
+        </scene>
+        <!--Test View Controller-->
+        <scene sceneID="AgS-JM-YdQ">
+            <objects>
+                <viewController id="rSD-tO-oAb" customClass="TestViewController" customModule="ZainAutomotiveSolution" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IeL-PC-rLI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VQa-3q-GIH">
+                                <rect key="frame" x="112" y="248" width="150" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </progressView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6cg-wQ-8ww">
+                                <rect key="frame" x="164" y="386" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="btnStart:" destination="rSD-tO-oAb" eventType="touchUpInside" id="tTt-es-XVW"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="znD-kV-iiU"/>
+                    </view>
+                    <connections>
+                        <outlet property="progressView" destination="VQa-3q-GIH" id="ejN-ma-BM4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EQa-fT-QDV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-231" y="1664"/>
         </scene>
     </scenes>
     <resources>

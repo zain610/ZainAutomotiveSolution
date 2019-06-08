@@ -16,6 +16,7 @@ class Car: NSObject {
     var year: String = "" //year of manufacture
     var registration: String = "" //a valid car rego
     var status: Bool = false //False means that car is not under repairs at a workshop
+    var image: UIImage = UIImage()
     
     
 

@@ -9,6 +9,7 @@ import Firebase
 import MessageKit
 import FirebaseFirestore
 
+
 struct Message: MessageType {
     
     var id: String?
@@ -61,6 +62,7 @@ struct Message: MessageType {
         let sentDate = timestamp.dateValue()
 
         guard let senderID = data["senderID"] as? String else {
+            print(data["senderID"])
             return nil
         }
         guard let senderName = data["senderName"] as? String else {
@@ -111,10 +113,8 @@ extension Message: DatabaseRepresentation {
         } else {
             rep["content"] = content
         }
-        
         return rep
     }
-    
 }
 
 extension Message: Comparable {

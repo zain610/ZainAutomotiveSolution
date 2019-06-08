@@ -14,7 +14,10 @@ import Eureka
 
 
 class AddCarViewController: FormViewController  {
+
     
+    var progressView: UIProgressView?
+    var shouldRemoveProgressView: Bool = true
     
     
     weak var databaseController: DatabaseProtocol?
@@ -39,33 +42,45 @@ class AddCarViewController: FormViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let navigationVC = self.navigationController {
+            
+            // create progress bar with .bar style and add it as subview
+            self.progressView = UIProgressView(progressViewStyle: .bar)
+            
+            navigationVC.navigationBar.addSubview(self.progressView!)
+            
+            // create constraints
+            // NOTE: bottom constraint has 1 as constant value instead of 0; this way the progress bar will look like the one in Safari
+            let bottomConstraint = NSLayoutConstraint(item: navigationVC.navigationBar, attribute: .bottom, relatedBy: .equal, toItem: self.progressView!, attribute: .bottom, multiplier: 1, constant: 1)
+            let leftConstraint = NSLayoutConstraint(item: navigationVC.navigationBar, attribute: .leading, relatedBy: .equal, toItem: self.progressView!, attribute: .leading, multiplier: 1, constant: 0)
+            let rightConstraint = NSLayoutConstraint(item: navigationVC.navigationBar, attribute: .trailing, relatedBy: .equal, toItem: self.progressView!, attribute: .trailing, multiplier: 1, constant: 0)
+            
+            // add constraints
+            self.progressView!.translatesAutoresizingMaskIntoConstraints = false
+            navigationVC.view.addConstraints([bottomConstraint, leftConstraint, rightConstraint])
+        }
+        progressView!.progress = 0.0
+        
         
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         databaseController = appDelegate.databaseController
         self.allCars = (databaseController?.getServerData())!
-        
-        
         self.form.rowBy(tag: "Brand")?.updateCell()
         
-       
-        // Do any additional setup after loading the view.
+        if self.editCar != nil {
+            self.form.rowBy(tag: "Brand")?.baseValue = self.editCar?.brand
+        }
         
-//
-//        if editCar != nil {
-//            let brandIndex = brandData.firstIndex(of: (editCar?.brand)!)
-//            brandPickerView.selectRow(brandIndex!, inComponent: 0, animated: true)
-//
-//            modelInput.text = editCar?.model
-//            seriesInput.text = editCar?.series
-//            yearInput.text = editCar?.year
-//            registrationInput.text = editCar?.registration
         form +++ Section("Section1")
             <<< ActionSheetRow<String>("Brand"){ row in
                 row.tag = "Brand"
                 row.title = "Brand"
                 row.selectorTitle = "Pick a Brand Name"
                 row.options = ["Any"]
+                row.cellSetup({ (cell, row) in
+                    self.updateProgressBar()
+                })
                 row.cellUpdate({ (cell, row) in
                     //fill in here
                     self.carBrands = self.allCars.keys.map({ (key) -> String in
@@ -80,6 +95,8 @@ class AddCarViewController: FormViewController  {
                     for row in self.form.allRows {
                         if row.tag == "Model" {
                             row.updateCell()
+                             self.progressView!.setProgress(0.2, animated: true)
+
                         }
                     }
                 })
@@ -91,6 +108,7 @@ class AddCarViewController: FormViewController  {
                     let brandEmpty = ((self.brandValue).isEmpty)  ? true : false
                     if brandEmpty == false {
                         form.rowBy(tag: "Model")?.reload()
+                        self.updateProgressBar()
                     }
                     return brandEmpty
                 })
@@ -111,6 +129,7 @@ class AddCarViewController: FormViewController  {
                     for row in self.form.allRows {
                         if row.tag == "Series" {
                             row.updateCell()
+                            
                         }
                     }
                 })
@@ -122,6 +141,7 @@ class AddCarViewController: FormViewController  {
                     let modelEmpty = ((self.modelValue).isEmpty)  ? true : false
                     if modelEmpty == false {
                         form.rowBy(tag: "Series")?.reload()
+                        self.updateProgressBar()
                     }
                     return modelEmpty
                 })
@@ -141,6 +161,7 @@ class AddCarViewController: FormViewController  {
                     for row in self.form.allRows {
                         if row.tag == "Year" {
                             row.updateCell()
+                            
                         }
                     }
                 })
@@ -150,6 +171,7 @@ class AddCarViewController: FormViewController  {
                     let seriesEmpty = ((self.seriesValue).isEmpty)  ? true : false
                     if seriesEmpty == false {
                         form.rowBy(tag: "Year")?.reload()
+                        self.updateProgressBar()
                     }
                     return seriesEmpty
                 })
@@ -167,6 +189,7 @@ class AddCarViewController: FormViewController  {
                     self.yearValue = input.value!
                     self.view.addSubview(self.createCarButton)
                     
+                    
                 })
 
         }
@@ -176,8 +199,14 @@ class AddCarViewController: FormViewController  {
             $0.sourceTypes = .Camera
             $0.clearAction = .yes(style: .destructive)
             $0.value = self.imageValue
+            $0.onCellSelection({ (cell, row) in
+                self.shouldRemoveProgressView = false
+            })
             $0.onChange({ (row) in
                 self.imageValue = row.value!
+                self.updateProgressBar()
+                self.shouldRemoveProgressView = true
+                
             })
             
         }
@@ -190,15 +219,39 @@ class AddCarViewController: FormViewController  {
         
         
         }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        /* Lifecycle Method for when the view will be popped or removed from view
+         Here I am going to remove the progress bar we added at the start so progress bar is not available everywhere
+         */
+        if animated == true {
+            if self.shouldRemoveProgressView == true {
+                print("View will now disappear, delete the form")
+                
+                progressView?.removeFromSuperview()
+            }
+            
+        }
+    }
 
     @objc func handleAddCarBtn(_ sender: Any) {
+        /* This is an onlick action after the user clicks the create car button. THere is an intermediate step where the user has to add the rego of the car. So we present an Alert prompt for the user to fill in the rego
+         
+         TODO:-
+         -Data validate the rego input
+         
+         */
+        //create alert prompt
         let registrationInput = UIAlertController(title: "Enter Registration Number", message: "", preferredStyle: .alert)
+        //add an action to the form to handle the data entered
         registrationInput.addAction(UIAlertAction(title: "Enter", style: .default, handler: { [weak registrationInput] (_) in
             let textField = registrationInput!.textFields![0]
             self.registrationValue = textField.text!
             print(textField.text)
             self.addCar()
+            
         }  ))
+        //Cancel button for the user to exit the process
         registrationInput.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         registrationInput.addTextField { (textField: UITextField!) in
             textField.placeholder = "Please Enter Rego here"
@@ -208,6 +261,14 @@ class AddCarViewController: FormViewController  {
         
     }
     func addCar() {
+        /*
+         This method is to trigger an addition of a new car from the firestore.
+         This is done by
+         -Grab all the data collected.
+         - Call the addCar() method inside the firebaseController.
+         
+ 
+ */
         
         if dataValidation(brand: self.brandValue, model: self.modelValue, series: self.seriesValue, year: self.yearValue, registration: self.registrationValue) {
             let car = databaseController?.addCar(brand: self.brandValue, model: self.modelValue, series: self.seriesValue, year: self.yearValue, registration: self.registrationValue)
@@ -219,6 +280,11 @@ class AddCarViewController: FormViewController  {
     }
 
     func dataValidation(brand: String, model: String, series: String, year: String, registration: String) -> Bool {
+        /*
+         Currently there is a basic form of data validation which checks if the user has entered the provided info.
+         Since I am relying on the use of picker views and image picker view for the user to enter data into I am less reliant on the use of data validation to ensure if the user has entered the right pattern of data.
+ 
+ */
 
 
         if (brand.isEmpty || model.isEmpty || series.isEmpty || year.isEmpty || registration.isEmpty) {
@@ -232,4 +298,14 @@ class AddCarViewController: FormViewController  {
 
         return true
     }
+    func updateProgressBar() {
+        //Update the progress bar as the user progresses through the form.
+        let value: Float = (self.progressView?.progress)! + 0.2
+        self.progressView!.setProgress(value, animated: true)
+    }
+    @objc func removeProgressView() {
+        self.shouldRemoveProgressView = true
+    }
 }
+
+

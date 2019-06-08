@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import GoogleSignIn
 
+
 class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISearchResultsUpdating {
     
     //User variables
@@ -41,6 +42,8 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
         self.navigationItem.hidesBackButton = true // hide the back button on next view controller
         let leftNavButton = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(handleGoogleSignOut))
         self.navigationItem.leftBarButtonItem = leftNavButton
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+
         
         
         
@@ -60,6 +63,7 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
         print(firstName)
         self.navigationItem.title = "\(String(describing: firstName.capitalized))'s Garage"
         
+        
       
         
         //implement search in table view controller
@@ -73,17 +77,9 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
         
         // This view controller decides how the search controller is presented.
         definesPresentationContext = true
-        
-        
+        //modify table view
         tableView.rowHeight = UITableView.automaticDimension
-        
-//        let carCell = tableView.dequeueReusableCell(withIdentifier: CELL_CAR) as! CarsTableViewCell
-//        let imageView = carCell.imageLabel
-//        imageView?.translatesAutoresizingMaskIntoConstraints = false
-//        imageView?.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//        imageView?.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-//        imageView?.widthAnchor.constraint(equalToConstant: 121).isActive = true
-//        imageView?.heightAnchor.constraint(equalToConstant: 68).isActive = true
+//        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -172,18 +168,23 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let carCell = tableView.dequeueReusableCell(withIdentifier: CELL_CAR, for: indexPath) as! CarsTableViewCell
+        
+        //removing left padding
+        carCell.separatorInset = UIEdgeInsets.zero
+        carCell.layoutMargins = UIEdgeInsets.zero
+        
         if indexPath.section == SECTION_CARS {
             let car = filteredCars[indexPath.row]
             carCell.carLabel.text = "\(car.brand) \(car.model)"
             carCell.regoLabel.text = "Registration: \(car.registration)"
             if car.status == true {
                 carCell.statusLabel.text = "On Going"
-//                carCell.statusLabel.textColor = UIColor(displayP3Red: 244, green: 108, blue: 128, alpha: 0)
+                carCell.statusLabel.textColor = UIColor(displayP3Red: 0.956, green: 0.42, blue: 0.55, alpha: 1.0)
             }
             else {
                 carCell.statusLabel.text = "Available"
-//                carCell.statusLabel.textColor = UIColor(displayP3Red: 244, green: 108, blue: 128, alpha: 0)
-                carCell.statusLabel.text = "WOW"
+                carCell.statusLabel.textColor = UIColor(displayP3Red: 0.56, green: 1, blue: 0.58, alpha: 1.0)
+//                carCell.statusLabel.text = "WOW"
             }
             return carCell
         }

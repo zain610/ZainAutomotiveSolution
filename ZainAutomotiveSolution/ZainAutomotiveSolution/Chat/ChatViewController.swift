@@ -12,6 +12,7 @@ import Photos
 import Firebase
 import MessageKit
 import FirebaseFirestore
+//import Photos
 
 
 final class ChatViewController: MessagesViewController {
@@ -65,6 +66,7 @@ final class ChatViewController: MessagesViewController {
         }
         
         navigationItem.largeTitleDisplayMode = .never
+        navigationItem.title = "Welcome to my Chat"
         
         maintainPositionOnKeyboardFrameChanged = true
         messageInputBar.inputTextView.tintColor = .primary
@@ -79,6 +81,7 @@ final class ChatViewController: MessagesViewController {
     }
     
     // MARK: - Actions
+    
     
     // MARK: - Helpers
     
@@ -128,6 +131,8 @@ final class ChatViewController: MessagesViewController {
         switch change.type {
         case .added:
             insertNewMessage(message)
+        case .modified:
+            print("there is a new message from aryaan")
         default:
             break
         }

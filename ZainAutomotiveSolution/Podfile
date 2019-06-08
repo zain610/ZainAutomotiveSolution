@@ -17,7 +17,7 @@ target 'ZainAutomotiveSolution' do
   pod 'MessageKit', '~> 1.0.0'
   pod 'MessageInputBar'
   pod 'ImageRow', '~> 4.0'  
-  pod 'CVCalendar', '~> 1.6.2'
+  pod 'FSCalendar'
 
   post_install do |installer|
         installer.pods_project.targets.each do |target|
