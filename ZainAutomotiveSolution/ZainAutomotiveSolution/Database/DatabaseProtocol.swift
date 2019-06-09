@@ -33,6 +33,7 @@ protocol DatabaseProtocol: AnyObject {
     func addCar(brand: String, model: String, series: String, year: String, registration: String) -> Car
     func deleteCar(car: Car)
     func updateCar(car: Car, brand: String, model: String, series: String, year: String, registration: String)
+    func addCarImage(carId: String, image: Data)
     func addListener(listener: DatabaseListener)
     func removeListener(listener: DatabaseListener)
 }

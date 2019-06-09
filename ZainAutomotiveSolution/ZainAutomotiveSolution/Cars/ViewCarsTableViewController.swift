@@ -169,9 +169,9 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let carCell = tableView.dequeueReusableCell(withIdentifier: CELL_CAR, for: indexPath) as! CarsTableViewCell
         
-        //removing left padding
-        carCell.separatorInset = UIEdgeInsets.zero
-        carCell.layoutMargins = UIEdgeInsets.zero
+//        //removing left padding
+//        carCell.separatorInset = UIEdgeInsets.zero
+//        carCell.layoutMargins = UIEdgeInsets.zero
         
         if indexPath.section == SECTION_CARS {
             let car = filteredCars[indexPath.row]

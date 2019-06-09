@@ -21,6 +21,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
     
 //    var defaultCarList: Car
     var globalUser: User?
+    //update car method. FInd the car stored in firestore using car.id and then set the new values of the car
     func updateCar(car: Car, brand: String, model: String, series: String, year: String, registration: String) {
         return
     }
@@ -29,7 +30,6 @@ class FirebaseController: NSObject, DatabaseProtocol {
     var listeners = MulticastDelegate<DatabaseListener>()
     var authController: Auth
     var database: Firestore
-    var storage: Storage
     var carsRef: CollectionReference?
     var workshopsRef: CollectionReference?
     var serverDataRef: Query?
@@ -56,8 +56,9 @@ class FirebaseController: NSObject, DatabaseProtocol {
         carList = [Car]()
         workshopList = [Workshop]()
         serverDataList = [String: Any]()
-        //Init firebase storage
-        storage = Storage.storage()
+        //Init firebase storage and get reference to it.
+        storageRef = Storage.storage().reference()
+        
         
         super.init()
         //check if user has been fetched. if the field is not nil then set up listeners and set up listeners
@@ -104,8 +105,8 @@ class FirebaseController: NSObject, DatabaseProtocol {
             }
             self.parseServerData(snapshot: querySnapshot!)
         }
-        
-        carImagesRef = storage.reference().child("User_Cars")
+        //Firebase storage listeners
+        carImagesRef = storageRef?.child("Cars")
         
         
     }
@@ -227,11 +228,38 @@ class FirebaseController: NSObject, DatabaseProtocol {
         //Add car details. By default car status will be false
         let car = Car()
         let id = carsRef?.addDocument(data: ["Brand": brand, "Model": model, "Series": series, "Year": year, "Registration": registration])
-        car.brand = brand
-        car.model = model
-        car.id = id!.documentID
+        car.brand = brand //Car Brand
+        car.model = model //Car Model
+        car.id = id!.documentID //Car's ID
         return car
     }
+    
+    func addCarImage(carId: String, image: Data) {
+        //get a new child off the root carImagesRef. Replace the newCarImage child with car's
+        print(carId)
+        //make a child node of the car id
+        let myImageRef = self.carImagesRef?.child("\(carId).jpeg/")
+        print(myImageRef?.fullPath as Any)
+        
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/png"
+        //put data into the referene made
+        myImageRef?.putData(image, metadata: nil, completion: { (metadata, error) in
+            if let error = error {
+                print("unable to upload image")
+            }
+            myImageRef?.downloadURL(completion: { (url, error) in
+                if let error = error {
+                    print("Unable to retreive download url \(error)")
+                }
+                print(url)
+            })
+        })
+        
+        
+        
+    }
+    
     func deleteCar(car: Car) {
         //delete the car from the collection of Cars stored in Firestore
         carsRef?.document(car.id).delete() { err in
@@ -244,6 +272,8 @@ class FirebaseController: NSObject, DatabaseProtocol {
         }
         
     }
+    
+    
     
     func addListener(listener: DatabaseListener) {
         listeners.addDelegate(listener)

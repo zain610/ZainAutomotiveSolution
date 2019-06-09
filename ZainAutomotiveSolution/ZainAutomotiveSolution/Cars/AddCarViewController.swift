@@ -79,7 +79,7 @@ class AddCarViewController: FormViewController  {
                 row.selectorTitle = "Pick a Brand Name"
                 row.options = ["Any"]
                 row.cellSetup({ (cell, row) in
-                    self.updateProgressBar()
+//                    self.updateProgressBar()
                 })
                 row.cellUpdate({ (cell, row) in
                     //fill in here
@@ -274,6 +274,11 @@ class AddCarViewController: FormViewController  {
             let car = databaseController?.addCar(brand: self.brandValue, model: self.modelValue, series: self.seriesValue, year: self.yearValue, registration: self.registrationValue)
             print(car)
             print("New Car added: \(car?.brand ?? "NO NEW CAR")) ")
+            //convert UIImage to NSData
+            if let uploadData = self.imageValue.jpegData(compressionQuality: 0.75) {
+                //upload data is not null
+                databaseController?.addCarImage(carId: car!.id, image: uploadData)
+            }
             
         }
         _ = navigationController?.popViewController(animated: true)
@@ -302,6 +307,7 @@ class AddCarViewController: FormViewController  {
         //Update the progress bar as the user progresses through the form.
         let value: Float = (self.progressView?.progress)! + 0.2
         self.progressView!.setProgress(value, animated: true)
+        print(self.progressView?.progress)
     }
     @objc func removeProgressView() {
         self.shouldRemoveProgressView = true
