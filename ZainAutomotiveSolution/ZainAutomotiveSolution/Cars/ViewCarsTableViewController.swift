@@ -19,8 +19,10 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
     
     
     let SECTION_CARS = 0
+    let SECTION_NO_CARS = 1
     let CELL_CAR = "carCell"
     let SEGUE_IDENTIFIER = "selectWorkshopSegue"
+    let CELL_NO_CAR = "noCarCell"
     
     
     var allCars: [Car] = []
@@ -79,7 +81,7 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
         definesPresentationContext = true
         //modify table view
         tableView.rowHeight = UITableView.automaticDimension
-//        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -147,7 +149,9 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        //1st section is to list the cars
+        //2nd section acts as a default cell when there is no data in the system
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -158,6 +162,9 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
         }
         //if the user is not filtering and should display all cars
         else if isFiltering() == false {
+            if section == SECTION_NO_CARS {
+                return 1
+            }
             return allCars.count
         }
         //else return 1
@@ -167,30 +174,59 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let carCell = tableView.dequeueReusableCell(withIdentifier: CELL_CAR, for: indexPath) as! CarsTableViewCell
-        
-//        //removing left padding
-//        carCell.separatorInset = UIEdgeInsets.zero
-//        carCell.layoutMargins = UIEdgeInsets.zero
+        /*
+         This is the main method we override inorder to display the data we want. So first we check if the section we want to render data for. So SECTION_CARS is for all the cars in the system owned by the user. Then by default the else implies that we are in the second section and thats where we render the default cell
+         */
         
         if indexPath.section == SECTION_CARS {
-            let car = filteredCars[indexPath.row]
-            carCell.carLabel.text = "\(car.brand) \(car.model)"
-            carCell.regoLabel.text = "Registration: \(car.registration)"
-            if car.status == true {
-                carCell.statusLabel.text = "On Going"
-                carCell.statusLabel.textColor = UIColor(displayP3Red: 0.956, green: 0.42, blue: 0.55, alpha: 1.0)
+            let carCell = tableView.dequeueReusableCell(withIdentifier: CELL_CAR, for: indexPath) as! CarsTableViewCell
+            //        //removing left padding
+            carCell.separatorInset = UIEdgeInsets.zero
+            carCell.layoutMargins = UIEdgeInsets.zero
+            carCell.layer.borderColor = UIColor.black.cgColor
+            carCell.layer.borderWidth = CGFloat(2)
+            carCell.layer.cornerRadius = 15
+            carCell.layer.masksToBounds = true
+            carCell.layer.shadowOffset = CGSize(width: 0, height: 0)
+            carCell.layer.shadowColor = UIColor.black.cgColor
+            let radius = carCell.contentView.layer.cornerRadius
+            carCell.layer.shadowPath = UIBezierPath(roundedRect: carCell.bounds, cornerRadius: radius).cgPath
+//            carCell.layer.shadowOffset = CGRect(0,0)
+            if !self.allCars.isEmpty {
+                let car = filteredCars[indexPath.row]
+                carCell.carLabel.text = "\(car.brand) \(car.model)"
+                carCell.regoLabel.text = "Registration: \(car.registration)"
+                if car.status == true {
+                    carCell.statusLabel.text = "On Going"
+                    carCell.statusLabel.textColor = UIColor(displayP3Red: 0.956, green: 0.42, blue: 0.55, alpha: 1.0)
+                }
+                else {
+                    carCell.statusLabel.text = "Available"
+                    carCell.statusLabel.textColor = UIColor(displayP3Red: 0.56, green: 1, blue: 0.58, alpha: 1.0)
+                    //                carCell.statusLabel.text = "WOW"
+                }
+                return carCell
             }
-            else {
-                carCell.statusLabel.text = "Available"
-                carCell.statusLabel.textColor = UIColor(displayP3Red: 0.56, green: 1, blue: 0.58, alpha: 1.0)
-//                carCell.statusLabel.text = "WOW"
-            }
-            return carCell
+            
+            //if the there is no cars in the db. Give feedback to the user that there are no cars
+            
         }
-        carCell.carLabel.text = "Please try again! Nothing Found!"
-        return carCell
-        
+        if self.allCars.isEmpty {
+            let noCarCell = tableView.dequeueReusableCell(withIdentifier: CELL_NO_CAR, for: indexPath) as! NoCarCellTableViewCell
+            noCarCell.separatorInset = UIEdgeInsets.zero
+            noCarCell.layoutMargins = UIEdgeInsets.zero
+            noCarCell.layer.cornerRadius = 10
+            noCarCell.layer.masksToBounds = true
+            noCarCell.layer.shadowOffset = CGSize(width: 0, height: 0)
+            noCarCell.layer.shadowColor = UIColor.black.cgColor
+            let radius = noCarCell.contentView.layer.cornerRadius
+            noCarCell.layer.shadowPath = UIBezierPath(roundedRect: noCarCell.bounds, cornerRadius: radius).cgPath
+            return noCarCell
+        }
+        //this is to conform that if all else fails we return an empty cell.
+        let emptyCell = UITableViewCell()
+        return emptyCell
+       
         
     }
     
@@ -202,7 +238,7 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete && indexPath.section == SECTION_CARS {
+        if editingStyle == .delete && indexPath.section == SECTION_CARS && !self.allCars.isEmpty {
             /*
              -find the car
              - delete from db
@@ -216,13 +252,18 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
             //remove the car from allCars[]
             self.allCars.remove(at: (allCarsIndex)!)
             self.tableView.deleteRows(at: [indexPath], with: .fade)
+            self.tableView.reloadData()
             self.updateSearchResults(for: self.navigationItem.searchController!)
             
         }
         
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: SEGUE_IDENTIFIER, sender: self)
+        //get the section value from the indexpath and preven the defualt value from section 1 to perform the segue
+        if indexPath.section == 0 {
+            performSegue(withIdentifier: SEGUE_IDENTIFIER, sender: self)
+        }
+        
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         

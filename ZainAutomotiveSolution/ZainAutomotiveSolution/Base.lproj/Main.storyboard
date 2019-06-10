@@ -83,12 +83,31 @@
                                         <constraint firstItem="jgA-dU-odQ" firstAttribute="top" secondItem="KBD-el-IO1" secondAttribute="bottom" constant="12" id="zQE-jy-23N"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.92941176469999998" green="0.96470588239999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="carLabel" destination="Nw5-gN-kJF" id="4dx-CR-GmD"/>
                                     <outlet property="imageLabel" destination="KBD-el-IO1" id="Unc-sn-tov"/>
                                     <outlet property="regoLabel" destination="RSv-7Q-cVo" id="5Zo-f8-wcM"/>
                                     <outlet property="statusLabel" destination="jgA-dU-odQ" id="emM-pJ-xZk"/>
                                 </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="noCarCell" textLabel="ryN-4J-hDd" rowHeight="127" style="IBUITableViewCellStyleDefault" id="kVh-kG-RtW" customClass="NoCarCellTableViewCell" customModule="ZainAutomotiveSolution" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="165" width="375" height="127"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kVh-kG-RtW" id="g0R-AV-b5O">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="126.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Register a Car 🚘" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ryN-4J-hDd">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="126.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                            <color key="textColor" red="0.85020356720000001" green="0.84327565019999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>

@@ -40,6 +40,7 @@
 		01C38B2A22AB716D002375A6 /* SelectDateAndTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C38B2922AB716D002375A6 /* SelectDateAndTimeViewController.swift */; };
 		01C38B2C22ABB51B002375A6 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C38B2B22ABB51B002375A6 /* Appointment.swift */; };
 		01C38B2E22ABBA20002375A6 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C38B2D22ABBA20002375A6 /* TestViewController.swift */; };
+		01C38B3222AE6384002375A6 /* NoCarCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C38B3122AE6384002375A6 /* NoCarCellTableViewCell.swift */; };
 		3A7AC97F5F1F8A398AC44059 /* Pods_ZainAutomotiveSolution.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBB02301D01068DD2A88C1A /* Pods_ZainAutomotiveSolution.framework */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +80,7 @@
 		01C38B2922AB716D002375A6 /* SelectDateAndTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDateAndTimeViewController.swift; sourceTree = "<group>"; };
 		01C38B2B22ABB51B002375A6 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
 		01C38B2D22ABBA20002375A6 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		01C38B3122AE6384002375A6 /* NoCarCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCarCellTableViewCell.swift; sourceTree = "<group>"; };
 		4ED293E597BCC82E8816BF86 /* Pods-ZainAutomotiveSolution.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZainAutomotiveSolution.debug.xcconfig"; path = "Target Support Files/Pods-ZainAutomotiveSolution/Pods-ZainAutomotiveSolution.debug.xcconfig"; sourceTree = "<group>"; };
 		5938D96B4B71AD6A0EC8B626 /* Pods-ZainAutomotiveSolution.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZainAutomotiveSolution.release.xcconfig"; path = "Target Support Files/Pods-ZainAutomotiveSolution/Pods-ZainAutomotiveSolution.release.xcconfig"; sourceTree = "<group>"; };
 		EBBB02301D01068DD2A88C1A /* Pods_ZainAutomotiveSolution.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZainAutomotiveSolution.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +160,7 @@
 			children = (
 				0114B295227D7F1500D97DC2 /* Car.swift */,
 				0114B28E227D0F9400D97DC2 /* CarsTableViewCell.swift */,
+				01C38B3122AE6384002375A6 /* NoCarCellTableViewCell.swift */,
 				0114B29D227EE8B000D97DC2 /* AddCarViewController.swift */,
 				0114B28C227C86D500D97DC2 /* ViewCarsTableViewController.swift */,
 			);
@@ -377,6 +380,7 @@
 				018C69D3229F9D4F005C8D72 /* Extensions.swift in Sources */,
 				0114B2A02282E91100D97DC2 /* WorkshopMapViewController.swift in Sources */,
 				0114B29A227D842C00D97DC2 /* MulticastDelegate.swift in Sources */,
+				01C38B3222AE6384002375A6 /* NoCarCellTableViewCell.swift in Sources */,
 				014D1D6C22A671DB00023F88 /* UIView+Additions.swift in Sources */,
 				0114B296227D7F1500D97DC2 /* Car.swift in Sources */,
 				0114B2AD22840AE100D97DC2 /* ChatViewController.swift in Sources */,
