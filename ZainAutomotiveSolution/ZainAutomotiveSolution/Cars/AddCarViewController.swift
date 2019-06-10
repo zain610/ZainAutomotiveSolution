@@ -69,6 +69,7 @@ class AddCarViewController: FormViewController  {
         self.form.rowBy(tag: "Brand")?.updateCell()
         
         if self.editCar != nil {
+            //if editcar is not nil, then replace values of the existing car on the form
             self.form.rowBy(tag: "Brand")?.baseValue = self.editCar?.brand
         }
         

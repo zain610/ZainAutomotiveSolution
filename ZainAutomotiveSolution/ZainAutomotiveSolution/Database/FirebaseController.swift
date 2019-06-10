@@ -261,13 +261,20 @@ class FirebaseController: NSObject, DatabaseProtocol {
     }
     
     func deleteCar(car: Car) {
-        //delete the car from the collection of Cars stored in Firestore
+        //delete the car from the collection of Cars stored in Firestore.
+        //using the id of the car deleted, delete the image of the car with the help of id.jpeg
         carsRef?.document(car.id).delete() { err in
             if (err != nil) {
                 print("\(String(describing: err))")
             }
             else {
                 print("Successfully deleted: \(car.id)")
+                //delete the image from storage
+                self.carImagesRef?.child("\(car.id).jpeg").delete(completion: { (error) in
+                    if let error = error {
+                        print("There was an error deleting the image frm storage of the car \(car.id) and error \(error)")
+                    }
+                })
             }
         }
         
