@@ -30,7 +30,7 @@ protocol DatabaseListener: AnyObject {
 protocol DatabaseProtocol: AnyObject {
 //    var defaultCarList: Car {get}
     func getServerData() -> [String: Any]
-    func addCar(brand: String, model: String, series: String, year: String, registration: String) -> Car
+    func addCar(userID: String, brand: String, model: String, series: String, year: String, registration: String, imageData: Data) -> Car
     func deleteCar(car: Car)
     func updateCar(car: Car, brand: String, model: String, series: String, year: String, registration: String)
     func addCarImage(carId: String, image: Data)

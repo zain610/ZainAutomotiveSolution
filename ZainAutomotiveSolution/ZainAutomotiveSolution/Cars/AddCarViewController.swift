@@ -272,14 +272,26 @@ class AddCarViewController: FormViewController  {
  */
         
         if dataValidation(brand: self.brandValue, model: self.modelValue, series: self.seriesValue, year: self.yearValue, registration: self.registrationValue) {
-            let car = databaseController?.addCar(brand: self.brandValue, model: self.modelValue, series: self.seriesValue, year: self.yearValue, registration: self.registrationValue)
-            print(car)
-            print("New Car added: \(car?.brand ?? "NO NEW CAR")) ")
+            let user = Auth.auth().currentUser
             //convert UIImage to NSData
-            if let uploadData = self.imageValue.jpegData(compressionQuality: 0.75) {
-                //upload data is not null
-                databaseController?.addCarImage(carId: car!.id, image: uploadData)
+            if let uploadData = self.imageValue.jpegData(compressionQuality: 0.2) {
+                //upload image is not null
+                //give all details to addCar()
+                
+                let car = databaseController?.addCar(userID: (user?.uid)!, brand: self.brandValue, model: self.modelValue, series: self.seriesValue, year: self.yearValue, registration: self.registrationValue, imageData: uploadData)
+//                databaseController?.addCarImage(carId: (car?.id)!, image: (car?.image)!)
+                print(car as Any)
+                print("New Car added: \(car?.brand ?? "NO NEW CAR")) ")
+            } else {
+                let alert = UIAlertController(title: "Error in Submitting Data", message: "Please fill in all the fields in the form", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+                    NSLog("The \"OK\" alert occured.")
+                }))
+                self.present(alert, animated: true, completion: nil)
+                return
+                
             }
+
             
         }
         _ = navigationController?.popViewController(animated: true)

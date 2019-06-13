@@ -41,6 +41,7 @@
 		01C38B2C22ABB51B002375A6 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C38B2B22ABB51B002375A6 /* Appointment.swift */; };
 		01C38B2E22ABBA20002375A6 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C38B2D22ABBA20002375A6 /* TestViewController.swift */; };
 		01C38B3222AE6384002375A6 /* NoCarCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C38B3122AE6384002375A6 /* NoCarCellTableViewCell.swift */; };
+		01F2C25A22B11E4100DAFA90 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F2C25922B11E4100DAFA90 /* AnnotationView.swift */; };
 		3A7AC97F5F1F8A398AC44059 /* Pods_ZainAutomotiveSolution.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBB02301D01068DD2A88C1A /* Pods_ZainAutomotiveSolution.framework */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,7 @@
 		01C38B2B22ABB51B002375A6 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
 		01C38B2D22ABBA20002375A6 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		01C38B3122AE6384002375A6 /* NoCarCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCarCellTableViewCell.swift; sourceTree = "<group>"; };
+		01F2C25922B11E4100DAFA90 /* AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
 		4ED293E597BCC82E8816BF86 /* Pods-ZainAutomotiveSolution.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZainAutomotiveSolution.debug.xcconfig"; path = "Target Support Files/Pods-ZainAutomotiveSolution/Pods-ZainAutomotiveSolution.debug.xcconfig"; sourceTree = "<group>"; };
 		5938D96B4B71AD6A0EC8B626 /* Pods-ZainAutomotiveSolution.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZainAutomotiveSolution.release.xcconfig"; path = "Target Support Files/Pods-ZainAutomotiveSolution/Pods-ZainAutomotiveSolution.release.xcconfig"; sourceTree = "<group>"; };
 		EBBB02301D01068DD2A88C1A /* Pods_ZainAutomotiveSolution.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZainAutomotiveSolution.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,6 +176,7 @@
 				0114B2A32283810900D97DC2 /* ViewWorkshopsTableViewController.swift */,
 				0114B29F2282E91100D97DC2 /* WorkshopMapViewController.swift */,
 				0114B2B52285B21500D97DC2 /* WorkShopTableViewCell.swift */,
+				01F2C25922B11E4100DAFA90 /* AnnotationView.swift */,
 			);
 			path = Workshop;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				0114B28F227D0F9400D97DC2 /* CarsTableViewCell.swift in Sources */,
 				014D1D6A22A671DB00023F88 /* UIColor+Additions.swift in Sources */,
 				014D1D6322A6712B00023F88 /* DatabaseRepresentation.swift in Sources */,
+				01F2C25A22B11E4100DAFA90 /* AnnotationView.swift in Sources */,
 				014D1D7022A68D4600023F88 /* AppSettings.swift in Sources */,
 				014D1D6B22A671DB00023F88 /* UIImage+Additions.swift in Sources */,
 				0114B2AF22840DAF00D97DC2 /* Message.swift in Sources */,

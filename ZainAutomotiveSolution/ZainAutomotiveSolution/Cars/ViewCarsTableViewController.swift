@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import GoogleSignIn
+import FirebaseUI
 
 
 class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISearchResultsUpdating {
@@ -16,6 +17,9 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
     //User variables
     var uid:String = ""
     var displayName: String = ""
+    
+    //Image Variable
+    var image: UIImage = UIImage()
     
     
     let SECTION_CARS = 0
@@ -28,12 +32,17 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
     var allCars: [Car] = []
     var filteredCars: [Car] = []
     
+    
+    //init storage
+    var storageRef: StorageReference = Storage.storage().reference()
+    var carImagesRef: StorageReference?
 //    var allWorkshops: [Workshop] = []
     
     weak var databaseController: DatabaseProtocol?
     
     
     weak var editCar: Car?
+    weak var selectedCar: Car?
     
     let searchController = UISearchController(searchResultsController: nil);
     
@@ -182,20 +191,31 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
             let carCell = tableView.dequeueReusableCell(withIdentifier: CELL_CAR, for: indexPath) as! CarsTableViewCell
             //        //removing left padding
             carCell.separatorInset = UIEdgeInsets.zero
-            carCell.layoutMargins = UIEdgeInsets.zero
+            carCell.layoutMargins = UIEdgeInsets.init(top: 10, left: 50, bottom: 10, right: 50)
             carCell.layer.borderColor = UIColor.black.cgColor
             carCell.layer.borderWidth = CGFloat(2)
             carCell.layer.cornerRadius = 15
-            carCell.layer.masksToBounds = true
+            carCell.layer.masksToBounds = false
             carCell.layer.shadowOffset = CGSize(width: 0, height: 0)
             carCell.layer.shadowColor = UIColor.black.cgColor
             let radius = carCell.contentView.layer.cornerRadius
             carCell.layer.shadowPath = UIBezierPath(roundedRect: carCell.bounds, cornerRadius: radius).cgPath
+            carCell.accessoryType = .disclosureIndicator
+        
 //            carCell.layer.shadowOffset = CGRect(0,0)
             if !self.allCars.isEmpty {
                 let car = filteredCars[indexPath.row]
                 carCell.carLabel.text = "\(car.brand) \(car.model)"
                 carCell.regoLabel.text = "Registration: \(car.registration)"
+                
+                //Fetch image
+                let reference = Storage.storage().reference(withPath: "Cars/\(car.id).jpeg")
+                print(reference)
+//                let placeholder = UIImage(named: "Jeep.jpg")
+                carCell.imageLabel.sd_setImage(with: reference)
+                //
+                
+                print(car.image)
                 if car.status == true {
                     carCell.statusLabel.text = "On Going"
                     carCell.statusLabel.textColor = UIColor(displayP3Red: 0.956, green: 0.42, blue: 0.55, alpha: 1.0)
@@ -261,6 +281,7 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //get the section value from the indexpath and preven the defualt value from section 1 to perform the segue
         if indexPath.section == 0 {
+            self.selectedCar = self.filteredCars[indexPath.row]
             performSegue(withIdentifier: SEGUE_IDENTIFIER, sender: self)
         }
         
@@ -270,6 +291,7 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
         //This is for sending data while adding a car
         if segue.identifier == "addCarSegue" {
             let destination = segue.destination as! AddCarViewController
+            
         }
 //        //send data while updating the car. Send car details
         if segue.identifier == "updateCarSegue" {
@@ -281,6 +303,8 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
         if segue.identifier == "selectWorkshopSegue" {
             let destination = segue.destination as! ViewWorkshopsTableViewController
             print("Going to View Workshops")
+            //pass the selected car to the next VC 
+            destination.selectedCar = self.selectedCar
         }
     }
     
@@ -289,5 +313,8 @@ class ViewCarsTableViewController: UITableViewController, DatabaseListener, UISe
         self.searchController.view.removeFromSuperview()
     }
     
+    func fetchImage(carId: String) {
+        
+    }
 
 }

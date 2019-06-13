@@ -15,10 +15,13 @@ class ViewWorkshopsTableViewController: UITableViewController, DatabaseListener 
     
     let SECTION_WORKSHOPS = 0
     let CELL_WORKSHOP = "workshopCell"
-    let SEGUE_IDENTIFIER = "displayAppointmentSegue"
+    final let SEGUE_IDENTIFIER = "selectDateAndTimeSegue"
+    let MAP_SEGUE = "displayMapSegue"
     
     var allWorkshops: [Workshop] = []
     var filteredWorkshops: [Workshop] = []
+    
+    var selectedCar: Car?
     
     weak var databaseController: DatabaseProtocol?
     
@@ -36,6 +39,11 @@ class ViewWorkshopsTableViewController: UITableViewController, DatabaseListener 
         navigationItem.searchController = searchController
         
         definesPresentationContext = true
+        
+        let rightSideOptionItem = UIBarButtonItem(image: UIImage(named: "mapIcon"), style: .plain, target: self, action: #selector(switchToMapView))
+        self.navigationItem.rightBarButtonItem = rightSideOptionItem
+        self.navigationItem.title = "Select a Workshop"
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -71,7 +79,6 @@ class ViewWorkshopsTableViewController: UITableViewController, DatabaseListener 
     
     
     
-    
 
     // MARK: - Table view data source
 
@@ -100,6 +107,9 @@ class ViewWorkshopsTableViewController: UITableViewController, DatabaseListener 
             
             workshop_cell.nameLabel.text = "\(workshop.name)"
             workshop_cell.addressLabel.text = "\(workshop.address)"
+            workshop_cell.ratingLabel.rating = workshop.rating
+            workshop_cell.accessoryType = .disclosureIndicator
+
             
             
             
@@ -115,10 +125,20 @@ class ViewWorkshopsTableViewController: UITableViewController, DatabaseListener 
         performSegue(withIdentifier: SEGUE_IDENTIFIER, sender: self)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "displayAppointmentSegue" {
-            let destination = segue.destination as! ViewAppointmentViewController
-            print("Going to view appointments")
+        if segue.identifier == SEGUE_IDENTIFIER {
+            let destination = segue.destination as! SelectDateAndTimeViewController
+            print("Going to select date and time")
+            destination.selectedCar = self.selectedCar
         }
+        if segue.identifier == MAP_SEGUE {
+            print("Going to map view ")
+            let destination = segue.destination as! WorkshopMapViewController
+            destination.selectedCar = self.selectedCar
+        }
+    }
+    @objc func switchToMapView() {
+        print("Go to map view")
+        performSegue(withIdentifier: MAP_SEGUE, sender: self)
     }
     
 }

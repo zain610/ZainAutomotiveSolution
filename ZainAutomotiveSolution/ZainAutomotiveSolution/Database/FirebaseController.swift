@@ -6,6 +6,21 @@
 //  Copyright © 2019 Michael Wybrow. All rights reserved.
 //
 
+/*
+ 
+ Add car details and image logic
+ 1. Get details from addCarView
+ 2. add car to firestore
+ 3. get document id
+ 4. get image value from addCarView
+ 5. add to firebase storage
+ 6. get the path
+ 7. add path to firestore car value
+ 
+ 
+ 
+ */
+
 import UIKit
 import Firebase
 import FirebaseAuth
@@ -15,6 +30,7 @@ import FirebaseStorage
 import GoogleSignIn
 
 class FirebaseController: NSObject, DatabaseProtocol {
+    
     
     
     
@@ -40,6 +56,9 @@ class FirebaseController: NSObject, DatabaseProtocol {
     var carList: [Car]
     var workshopList: [Workshop]
     var serverDataList: [String: Any]
+    
+    var downloadedImage: String = ""
+    var carImage: UIImage = UIImage()
     
     
     var provider = GoogleAuthSignInMethod
@@ -118,12 +137,15 @@ class FirebaseController: NSObject, DatabaseProtocol {
             let series = change.document.data()["Series"] as! String
             let year = change.document.data()["Year"] as! String
             let registration = change.document.data()["Registration"] as! String
+            let userId = change.document.data()["UserID"] as! String
+            //download image
 //            let status = change.document.data()["Status"] as! Bool
             print("Document ID \(documentRef)")
             
             if change.type == .added {
                 print("New Car: \(change.document.data())")
                 let newCar = Car()
+                newCar.userID = userId
                 newCar.brand = brand
                 newCar.model = model
                 newCar.series = series
@@ -132,7 +154,12 @@ class FirebaseController: NSObject, DatabaseProtocol {
                 newCar.id = documentRef
 //                newCar.status = status
                 
-                carList.append(newCar)
+                //check if the userId of the car is same as the id of the user logged in,
+                //add the car to the carList, else pass
+                if userId == Auth.auth().currentUser?.uid {
+                    carList.append(newCar)
+                }
+                
             }
             if change.type == .removed {
                 print("Removed Car: \(change.document.data())")
@@ -167,6 +194,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
             let location = change.document.data()["Location"] as! GeoPoint
             let lat = location.latitude
             let long = location.longitude
+            var rating = change.document.data()["Rating"] as! Double
             
             print("Document ID \(documentRef)")
             
@@ -178,6 +206,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
                 newWorkshop.lat = lat
                 newWorkshop.long = long
                 newWorkshop.id = documentRef
+                newWorkshop.rating = rating
                 
                 workshopList.append(newWorkshop)
             }
@@ -203,6 +232,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
     }
     
     func getCarByIndex(reference: String) -> Int? {
+        //search fro cars via its index of in the list.
         for car in carList {
             if(car.id == reference) {
                 return carList.firstIndex(of: car)
@@ -213,6 +243,7 @@ class FirebaseController: NSObject, DatabaseProtocol {
     
     
     func getCarByRegistration(reference: String) -> Car? {
+        //Can be used to search for car via its unique rego number
         for car in carList{
             if(car.registration == reference){
                 return car
@@ -224,13 +255,15 @@ class FirebaseController: NSObject, DatabaseProtocol {
         return serverDataList
     }
     
-    func addCar(brand: String, model: String, series: String, year: String, registration: String) -> Car {
+    func addCar(userID: String, brand: String, model: String, series: String, year: String, registration: String, imageData: Data) -> Car {
         //Add car details. By default car status will be false
         let car = Car()
-        let id = carsRef?.addDocument(data: ["Brand": brand, "Model": model, "Series": series, "Year": year, "Registration": registration])
+        let id = carsRef?.addDocument(data: ["UserID": userID,"Brand": brand, "Model": model, "Series": series, "Year": year, "Registration": registration])
         car.brand = brand //Car Brand
         car.model = model //Car Model
         car.id = id!.documentID //Car's ID
+        //add image to storage
+        self.addCarImage(carId: car.id, image: imageData)
         return car
     }
     
@@ -252,13 +285,27 @@ class FirebaseController: NSObject, DatabaseProtocol {
                 if let error = error {
                     print("Unable to retreive download url \(error)")
                 }
-                print(url)
+                guard let url = url?.absoluteString else { return }
+//                self.setImageForCar(carId: carId, imageUrl: url)
             })
         })
-        
-        
-        
     }
+    func getImageById(carId: String) -> UIImage {
+        let downloadRef = carImagesRef?.child("\(carId).jpeg")
+        downloadRef?.getData(maxSize: 15*1024*1024, completion: { (data, error) in
+            if let error = error {
+                print("There is no data available here \(error)")
+            }
+            else {
+                print("success")
+                let image = UIImage(data: data!)
+                self.carImage = image!
+                
+            }
+        })
+        return self.carImage
+    }
+
     
     func deleteCar(car: Car) {
         //delete the car from the collection of Cars stored in Firestore.

@@ -5,7 +5,7 @@ target 'ZainAutomotiveSolution' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
   
-
+  
   # Pods for ZainAutomotiveSolution
   pod 'Eureka'
   pod 'Firebase/Storage'
@@ -16,39 +16,47 @@ target 'ZainAutomotiveSolution' do
   pod 'GoogleSignIn'
   pod 'MessageKit', '~> 1.0.0'
   pod 'MessageInputBar'
-  pod 'ImageRow', '~> 4.0'  
+  pod 'ImageRow', '~> 4.0'
   pod 'FSCalendar'
-
+  pod 'FirebaseUI/Storage'
+  pod 'CalendarKit'
+  pod 'Cluster'
+  
   post_install do |installer|
-        installer.pods_project.targets.each do |target|
-            if target.name == 'Eureka'
-		target.build_configurations.each do |config|
-                    config.build_settings['SWIFT_VERSION'] = '4.2'
-                end
-            end
-	    if target.name == 'Cosmos'
-		target.build_configurations.each do |config|
-                    config.build_settings['SWIFT_VERSION'] = '4.2'
-                end
-	    end
-	    if target.name == 'Starscream'
-		target.build_configurations.each do |config|
-                    config.build_settings['SWIFT_VERSION'] = '4.2'
-                end
-	    end
-	    if target.name == 'Scaledrone'
-		target.build_configurations.each do |config|
-                    config.build_settings['SWIFT_VERSION'] = '4.2'
-                end
-	    end
-	    if target.name == 'ImageRow'
-		target.build_configurations.each do |config|
-		    config.build_settings['SWIFT_VERSION'] = '4.2'
-		end
-	    end
+    installer.pods_project.targets.each do |target|
+      if target.name == 'Eureka'
+        target.build_configurations.each do |config|
+          config.build_settings['SWIFT_VERSION'] = '4.2'
         end
-    end	
-
+      end
+      if target.name == 'Cosmos'
+        target.build_configurations.each do |config|
+          config.build_settings['SWIFT_VERSION'] = '4.2'
+        end
+      end
+      if target.name == 'Starscream'
+        target.build_configurations.each do |config|
+          config.build_settings['SWIFT_VERSION'] = '4.2'
+        end
+      end
+      if target.name == 'Scaledrone'
+        target.build_configurations.each do |config|
+          config.build_settings['SWIFT_VERSION'] = '4.2'
+        end
+      end
+      if target.name == 'ImageRow'
+        target.build_configurations.each do |config|
+          config.build_settings['SWIFT_VERSION'] = '4.2'
+        end
+      end
+      if target.name == 'Cluster'
+        target.build_configurations.each do |config|
+          config.build_settings['SWIFT_VERSION'] = '4.2'
+        end
+      end
+    end
+  end
+  
   
   
 end
