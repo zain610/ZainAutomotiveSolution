@@ -1,0 +1,6 @@
+framework module Pods_ZainAutomotiveSolution {
+  umbrella header "Pods-ZainAutomotiveSolution-umbrella.h"
+
+  export *
+  module * { export * }
+}

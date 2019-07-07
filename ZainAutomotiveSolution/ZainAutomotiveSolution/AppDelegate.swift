@@ -7,16 +7,32 @@
 //
 
 import UIKit
+import Firebase
+import GoogleSignIn
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+    
+    var newUser: Person? = Person()
+    var globalUser: User?
     var window: UIWindow?
+    var databaseController: DatabaseProtocol?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        databaseController = FirebaseController()
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
+        
+        
+        
         return true
+    }
+    @available(iOS 9.0, *)
+    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any])
+        -> Bool {
+            return GIDSignIn.sharedInstance().handle(url, sourceApplication:options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: [:])
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -40,7 +56,59 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
+    
+//    func applicationDidFinishLaunching(_ application: UIApplication) {
+//        /*
+//         After the application is finished launching we get the storyboard and set the destination as Signin
+//         We then use segue to pass user data to the next view controller 
+//        */
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let destination = storyboard.instantiateViewController(withIdentifier: "initialSegue") as! SignInViewController
+////        destination.user = self.newUser
+//        let navigationController = self.window?.rootViewController as! UINavigationController
+//        navigationController.pushViewController(destination, animated: false)
+//    }
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
+        // ...
+        if let error = error {
+            print("Error \(error)")
+            return
+        }
+        
+        guard let authentication = user.authentication else { return }
+        guard let idToken = authentication.idToken else { return }
+        guard let accessToken = authentication.accessToken else {return }
+        
+        
+        let credential = GoogleAuthProvider.credential(withIDToken: idToken,accessToken: accessToken)
+        print("Successfully signed into google with user: \(credential)")
+        Auth.auth().signInAndRetrieveData(with: credential) { (authResult, error) in
+            if let error = error {
+                print("Failed to create a Firebase User with Google account \(error)")
+                return
+            }
+//            self.globalUser = authResult?.user
+            
+//            User is logged in
+//            self.newUser!.id = user.userID                // For client-side use only!
+//            self.newUser!.idToken = user.authentication.idToken // Safe to send to the server
+//            self.newUser!.fullName = user.profile.name
+//            self.newUser!.email = user.profile.email
+//            print("Successfully logged into Firebase with Google: \(String(describing: self.newUser?.fullName))")
+        }
+        
+        
+    }
+    
+    //    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+    //        // Perform any operations when the user disconnects from app here.
+    //        // ...
+    //    }
+    
+    
+    
+    
+    
 
 }
 
